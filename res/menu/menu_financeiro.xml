@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/remover_despesarec" android:title="Excluir Lancamento">
+            
+        </item>
+        <item android:id="@+id/editar_lancamento" android:title="Editar Lançamento">
+            
+        </item>
+        
+        <item android:id="@+id/realiza_pagamento" android:title="Realizar Pagamento">
+            
+        </item>
+        
+         <item android:id="@+id/insere_lancamento" android:title="Inserir Novo Lançamento">
+            
+        </item>
+        
+         <item android:id="@+id/atualiza_lista" android:title="Atualizar Lista">
+            
+        </item>
+        
+          
+    </menu>

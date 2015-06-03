@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Período"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <Button
+                android:id="@+id/btdataini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selecionarDataini"
+                android:layout_weight="0.3"
+                android:text="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="           " />
+
+            <Button
+                android:id="@+id/btdatafim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selecionarDatafim"
+                 android:layout_weight="0.3"
+                android:text="" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categoria"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/categoriasel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/erro_salvar" >
+    </Spinner>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Situação"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/ds_situacaosel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@array/ds_stiuacaotitulo" >
+    </Spinner>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receita ou Despesa"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/ds_tiporeceitadespesa
+                "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@array/ds_tiporeceitadesp" >
+    </Spinner>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="buscarRelat"
+        android:src="@drawable/buscar" />
+
+</LinearLayout>

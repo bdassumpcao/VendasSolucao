@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.consultoriasolucao.appsolucaosistemas"
+    android:versionCode="20"
+    android:versionName="20.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    
+    <uses-permission android:name="android.permisssion.ACCESS_COARSE_LOCATION">       
+        
+    </uses-permission>
+    
+    
+
+    
+    
+        
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/teste7png"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service android:name="com.consultoriasolucao.appsolucaosistemas.BackgroundService"></service>
+         <service android:name="com.consultoriasolucao.appsolucaosistemas.MyService"></service>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.TransacoesOn"  android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+			    <category android:name="android.intent.category.LAUNCHER" />
+			    
+            
+            </intent-filter>
+        </activity>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Suporte"/>
+
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Produtos"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.QuemSomos"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Contato"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.ConsultaCliente"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.CodigodeAcesso"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Utilidades"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.CalcularFerias"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.CalcularFinanciamento"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.FinancasPessoais"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.LancaDespesa"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.RelatorioFinanceiro"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.LancaReceita"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.ConsultaCagetoria"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Categoria"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.FiltroRelatFinanceiro"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.LancaPedido" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.FiltroGerenciarPedido"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.GerenciarPedido"/>
+                     
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.GerenciarLocalizacao"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.ConsultaProduto">
+        	<intent-filter>
+                <action android:name="com.consultoriasolucao.appsolucaosistemas.ACAO_EXIBIR_SAUDACAO" />
+                <category android:name="com.consultoriasolucao.appsolucaosistemas.CATEGORIA_SAUDACAO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> 
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.DadosProduto"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.DadosCliente"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.LancaItensPedido"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Enviaremailcliente"/>
+        <activity android:name="com.consultoriasolucao.appsolucaosistemas.Enviaremailloja"/>
+             
+    </application>
+
+</manifest>

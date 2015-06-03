@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
+
+     <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    
+    <EditText
+        android:id="@+id/txtcd_cli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
+    
+    <Button
+        android:id="@+id/btcd_cli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="consultaCliente"
+        android:textSize="14sp"
+        android:text="Cliente" />
+</TableRow>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observações: "
+            android:textStyle="bold" />
+        
+    <EditText
+     android:id="@+id/txtds_obs"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:text="" />
+   
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >    
+        
+      	<AbsoluteLayout 
+      	android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+		    <TextView
+		        android:id="@+id/textView3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Forma de Pagamento "
+		        android:textStyle="bold" />
+		
+		    <TextView
+		        android:id="@+id/textView4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_x="274dp"
+		        android:layout_y="0dp"
+		        android:text="Tabela"
+		        android:textStyle="bold" />
+
+    	</AbsoluteLayout>
+     </TableRow>
+
+    
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+      	
+      	<LinearLayout       	android:layout_width="match_parent"
+        android:layout_height="wrap_content">   	
+
+    	<Spinner
+    	    android:id="@+id/spnds_formapgto"
+    	    android:layout_width="270dp"
+    	    android:layout_height="34dp" />
+
+	    <EditText
+	        android:id="@+id/edtcd_tabelapreco"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:ems="10"
+	        android:inputType="numberDecimal"
+	        android:text="1" >
+	        <requestFocus />
+	    </EditText>
+
+        </LinearLayout>
+   </TableRow>
+        
+   <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+      	
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+   </TableRow>
+        
+       <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >    
+        
+      	<AbsoluteLayout 
+      	android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+		    <TextView
+		        android:id="@+id/textView7"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Filtro da busca"
+		        android:textStyle="bold" />
+		
+		    <TextView
+		        android:id="@+id/textView8"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_x="274dp"
+		        android:layout_y="0dp"
+		        android:text="Desc."
+		        android:textStyle="bold" />
+
+    	</AbsoluteLayout>
+     </TableRow>
+     
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+      	
+      	<LinearLayout
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content"
+      	    android:orientation="horizontal" >
+
+      	    <EditText
+      	        android:id="@+id/edt_id"
+      	        android:layout_width="56dp"
+      	        android:layout_height="match_parent"
+      	        android:ems="10"
+      	        android:inputType="numberDecimal" >
+      	    </EditText>
+
+      	    <EditText
+      	        android:id="@+id/edt_descricao"
+      	        android:layout_width="174dp"
+      	        android:layout_height="match_parent"
+      	        android:layout_weight="0.91"
+      	        android:ems="10"
+      	        android:inputType="text" >
+      	    </EditText>
+
+      	    <EditText
+      	        android:id="@+id/edt_desconto"
+      	        android:layout_width="64dp"
+      	        android:layout_height="match_parent"
+      	        android:ems="10"
+      	        android:inputType="number" >
+
+      	    </EditText>
+      	</LinearLayout>
+
+   </TableRow>
+        
+   <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+      	
+       <LinearLayout         
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content">
+
+           <CheckBox
+               android:id="@+id/cbConferir"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:onClick="Conferir"
+               android:text="Conferir"
+               android:textSize="14sp"
+               android:textStyle="bold" />
+
+           <Button
+               android:id="@+id/bt_buscaproduto"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="0.08"
+               android:onClick="buscarprodutos"
+               android:text="Busca"
+               android:textSize="14sp" />
+
+           <Button
+               android:id="@+id/btsalvapedido"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:onClick="salvaPedido"
+               android:text="Salva"
+               android:textSize="14sp" />
+
+           <Button
+               android:id="@+id/bt_sair"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:onClick="Sair"
+               android:text="Sair"
+               android:textSize="14sp" />
+
+       </LinearLayout>
+       
+   </TableRow>
+   
+    
+    <TableRow
+        android:id="@+id/tableRow9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+       
+        <RelativeLayout
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content" >
+           
+        <TextView
+            android:id="@+id/txtcd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07"
+            android:text="Cód. Pedido: "
+            android:textColor="@color/vermelho"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="70dp"
+            android:layout_toRightOf="@+id/txtcd"
+            android:text="Total R$: "
+            android:textColor="@color/vermelho"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtcd_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/txtcd"
+            android:layout_weight="0.07"
+            android:textColor="@color/vermelho"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txttt_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView6"
+            android:text="0,00"
+            android:textColor="@color/vermelho"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+		</RelativeLayout>
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/tableRow10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        
+        <ListView        
+            android:id="@+id/lst_produtos"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:descendantFocusability="beforeDescendants" >            
+        </ListView>
+    </TableRow>
+	
+</LinearLayout>

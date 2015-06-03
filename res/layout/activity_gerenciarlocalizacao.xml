@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bt_buscaproduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="veririficalocalizacao"
+        android:text="Atualizar Localizacao" />
+    
+    
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitude: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtvl_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+        
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitude: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtvl_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0" />
+
+        
+
+    </TableRow>
+    <EditText
+            android:id="@+id/txtcoordenadas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+        
+    <ListView
+        android:id="@+id/listacoordenadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+<Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apagar Localização"
+            android:onClick="apagalocalizacao" />
+</LinearLayout>

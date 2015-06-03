@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TesteVendasSolucao</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="erro_salvar">Erro ao salvar</string>
+    <string name="sitaucaopago">Pago</string>
+    <string name="situacaoavencer">A vencer</string>
+
+    <string-array name="ds_stiuacaotitulo">
+<item>TODOS</item>
+ <item>Pagos</item>
+ <item>A Vencer</item> 
+ </string-array>
+ 
+    <string-array name="ds_tiporeceitadesp">
+<item>TODOS</item>
+ <item>Receita</item>
+ <item>Despesa</item> 
+ </string-array>
+ 
+     <string-array name="ds_formapgto">
+<item>SELECIONE</item>
+ <item>A VISTA</item>
+ <item>BOLETO</item>
+ <item>CARTEIRA</item>
+ <item>CHEQUE</item>
+ <item>CARTAO</item>
+ <item>DEPOSITO EM CONTA</item>
+ <item>OUTROS</item> 
+ </string-array>
+
+</resources>

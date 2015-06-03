@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    
+                    android:text="Código: " />
+
+                <TextView
+                    android:id="@+id/txtcd_pedido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"  
+                    android:layout_weight="0.50"                  
+                    android:text="" />
+                
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    
+                    android:text="Cód. Tab. Preco: " />
+                <TextView
+                    android:id="@+id/txtcd_tabelapreco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.50"
+                    android:text="0" />
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
+
+     <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+</TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+       
+ <EditText
+            android:id="@+id/txtcd_prd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                        
+             />
+
+ 
+     
+         <Button
+        android:id="@+id/btcd_prd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="consultaProduto"
+        android:text="Produto" />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edtqt_iten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:ems="10" 
+            android:text="">
+            
+
+            <requestFocus />
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/edtvl_iten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:text="" >
+
+            <requestFocus />
+
+            <requestFocus />
+        </EditText>
+
+        
+        
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/inserir" 
+            android:onClick="inserirIten"/>
+
+        
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_weight="0.5"
+            android:text="Desconto Final R$ .: " />
+
+        <EditText
+            android:id="@+id/txtvl_descontofinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_weight="0.5"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Pedido: "
+              />
+
+        <TextView
+            android:id="@+id/txttt_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0,00"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <ListView
+        android:id="@+id/listaitenspedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

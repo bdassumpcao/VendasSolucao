@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+            
+           
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+
+               
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+	                    <TextView
+	                        android:id="@+id/textView1"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_weight="0.01"
+	                        android:text="Total Pedido " />
+	
+	                    <TextView
+	                        android:id="@+id/txttt_vlpedido"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:text="0,00"
+	                        android:textColor="@color/vermelho"
+	                        android:layout_weight="0.5" />
+
+	                    <TextView
+	                        android:id="@+id/textView2"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_weight="0.01"
+	                        android:text="Quant: " />
+
+	                    <TextView
+	                        android:id="@+id/txttt_qtpedido"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_x="104dp"
+	                        android:layout_y="0dp"
+	                        android:text="0,00"
+	                        android:textColor="@color/vermelho" />
+
+                </TableRow>
+ <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+              <Button
+                  android:id="@+id/btinserirpedido"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.5"
+                  android:onClick="inserirPedido"
+                  android:text="Novo Pedido" />
+
+              <Button
+                  android:id="@+id/btatualizalista"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.5"
+                  android:onClick="atualizaLista"
+                  android:text="Localizar Pedido" />
+
+                    </TableRow>
+            </TableLayout>
+            
+      
+
+   
+  <ListView
+        android:id="@+id/listapedido"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+   
+</LinearLayout>
