@@ -115,6 +115,7 @@ public class GerenciarPedido extends Activity implements
 					"delete from itenspedido where cd_pedido="+cd_lancamento);
 			db.getWritableDatabase().execSQL(
 					"delete from pedido where _id="+cd_lancamento);
+			buscarrelat();
 			return true;			
 			
 		

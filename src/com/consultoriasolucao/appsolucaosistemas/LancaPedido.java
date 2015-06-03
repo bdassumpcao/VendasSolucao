@@ -247,10 +247,10 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			while (c.moveToNext()) 
 			{
 				HashMap<String, String> mapa = new HashMap<String,String>();
-				mapa.put("cd_prd",  c.getString(1).trim());
+				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", "0"+"");
-				mapa.put("vl_vnd", df.format(c.getDouble(3))+"   ");
+				mapa.put("qt_prd", df.format(Double.parseDouble("0"))+"");
+				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 //				mapa.put("rf_prd", "Ref.: "+ c.getString(4));	
 //				mapa.put("qt_prd", "Quant.: " +c.getString(5));
@@ -268,10 +268,10 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			while (c.moveToNext()) 
 			{
 				HashMap<String, String> mapa = new HashMap<String,String>();
-				mapa.put("cd_prd",  c.getString(1).trim());
+				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", "0"+"");
-				mapa.put("vl_vnd", df.format(c.getDouble(3))+"   ");
+				mapa.put("qt_prd", df.format(Double.parseDouble("0"))+"");
+				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 				edt_descricao.setText(c.getString(2));
 //				mapa.put("rf_prd", "Ref.: "+ c.getString(4));	
@@ -318,43 +318,60 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 	public void salvaPedido(View view)
 	{
-
-		int x = listprd.getAdapter().getCount();
-		for(int i=0; i<x; i++){
-			SQLiteDatabase db = helper.getWritableDatabase();
-			String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
-
-			HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
-			cd_prd = (String) obj.get("cd_prd");
-			nm_prd = (String) obj.get("nm_prd");
-			qt_prd = (String) obj.get("qt_prd");
-			vl_vnd = (String) obj.get("vl_prd");
-			vl_total = (String) obj.get("vl_total");
-			
-			if(!qt_prd.equals(""))
-				if(!qt_prd.equals("0")){
-					String codbarras="";
-					SQLiteDatabase d = helper.getReadableDatabase();
-					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
-					cursor.moveToNext();
-					
-					if (cursor.getCount() !=0)
-					{		
-					  codbarras = cursor.getString(0);
-				      cursor.close();
-					}
-					ContentValues values = new ContentValues();
-					values.put("cd_pedido", txtcd_pedido.getText().toString());
-					values.put("cd_prd", cd_prd);
-					values.put("qt_iten", qt_prd);
-					values.put("vl_iten", "1");
-					values.put("codbarras", codbarras);
-					long resultado = db.insert("itenspedido", null, values);
-					Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
-		
-				}
+		//se Conferir não estiver clicado então insere produtos no pedido
+		if(!cbConferir.isChecked()){
+			int x = listprd.getAdapter().getCount();
+			for(int i=0; i<x; i++){
+				SQLiteDatabase db = helper.getWritableDatabase();
+				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
+	
+				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
+				cd_prd = (String) obj.get("cd_prd");
+				nm_prd = (String) obj.get("nm_prd");
+				qt_prd = (String) obj.get("qt_prd");
+				vl_vnd = (String) obj.get("vl_prd");
+				vl_total = (String) obj.get("vl_total");
+				
+				if(!qt_prd.equals(""))
+					if(!qt_prd.equals("0,00"))
+						if(!qt_prd.equals("0")){
+							String codbarras="";
+							SQLiteDatabase d = helper.getReadableDatabase();
+							Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
+							cursor.moveToNext();
+							
+							if (cursor.getCount() !=0)
+							{		
+							  codbarras = cursor.getString(0);
+						      cursor.close();
+							}
+							ContentValues values = new ContentValues();
+							values.put("cd_pedido", txtcd_pedido.getText().toString());
+							values.put("cd_prd", cd_prd);
+							values.put("qt_iten", qt_prd);
+							values.put("vl_iten", "1");
+							values.put("codbarras", codbarras);
+							long resultado = db.insert("itenspedido", null, values);
+							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+				
+						}
 			}
-		
+		}
+		else if(cbConferir.isChecked()){
+			int x = listprd.getAdapter().getCount();
+			for(int i=0; i<x; i++){
+				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
+				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
+				cd_prd = (String) obj.get("cd_prd");
+				nm_prd = (String) obj.get("nm_prd");
+				qt_prd = (String) obj.get("qt_prd");
+				vl_vnd = (String) obj.get("vl_prd");
+				vl_total = (String) obj.get("vl_total");
+				
+//				if(qt_prd.equals("") || qt_prd.equals("0,00") || qt_prd.equals("0"))
+							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+			}
+		}
 		
 		Boolean flagvalida = true;
 		if (btcd_cli.getText().toString().equals("Cliente")) {
@@ -451,9 +468,20 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		switch (item.getItemId()) {
 		case R.id.remover_itenpedido:
 
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");
-			String cd_pedido = produtos.get(info.position).get("cd_pedido");
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");
+			cd_lancamento = "";
+			String cd_pedido = txtcd_pedido.getText().toString();
+			String cd_prd = produtos.get(info.position).get("cd_prd");
+			
+			SQLiteDatabase d = helper.getReadableDatabase();
+			Cursor cursor = d.rawQuery("SELECT _id FROM itenspedido where cd_prd="+cd_prd, null);
+			cursor.moveToNext();
+			
+			if (cursor.getCount() !=0)
+			{		
+			  cd_lancamento = cursor.getString(0);
+		      cursor.close();
+			}
+			
 
 			produtos.remove(info.position);
 			listprd.invalidateViews();
