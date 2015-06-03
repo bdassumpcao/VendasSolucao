@@ -65,7 +65,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	Date dt_lancamento;
 	private SimpleDateFormat dateFormat;
 	private DatabaseHelper helper;
-	private ArrayList<Map<String, String>> produtos;
+	private ArrayList<HashMap<String, String>> produtos;
 	public static final String EXTRA_CD_CLI = "com.consultoriasolucao.appsolucaosistemas.EXTRA_CD_CLI";
 	public static final String EXTRA_CD_PEDIDO = "com.consultoriasolucao.appsolucaosistemas.EXTRA_CD_PEDIDO";
 
@@ -99,7 +99,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.ds_formapgto,android.R.layout.simple_spinner_item);
 		spnds_formapgto = (Spinner) findViewById(R.id.spnds_formapgto);
-		spnds_formapgto.setAdapter(adapter1);		 		
+		spnds_formapgto.setAdapter(adapter1);
+					 		
 		
 		Calendar calendar = Calendar.getInstance();
 		ano = calendar.get(Calendar.YEAR);
@@ -196,7 +197,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	}
 
 	
-	private List<Map<String, String>> buscaritensPedido(String cd_pedido) {
+	private ArrayList<HashMap<String, String>> buscaritensPedido(String cd_pedido) {
 		// buscar todos os produtos do banco
 
 		Cursor c = helper
@@ -204,10 +205,10 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				.rawQuery(
 						"select a._id,  a.cd_prd, b.nm_prd, a.qt_iten ,a.vl_iten,(a.qt_iten*a.vl_iten) from itenspedido a join produto b on (a.cd_prd=b.cd_prd) where a.cd_pedido= "
 								+ cd_pedido, null);
-		produtos = new ArrayList<Map<String, String>>();
+		produtos = new ArrayList<HashMap<String, String>>();
 		DecimalFormat df = new DecimalFormat(",##0.00");
 		while (c.moveToNext()) {
-			Map<String, String> mapa = new HashMap<String, String>();
+			HashMap<String, String> mapa = new HashMap<String, String>();
 			mapa.put("cd_prd", c.getString(1));
 //			mapa.put("iditenpedido", c.getString(0));
 			mapa.put("qt_iten", df.format(c.getDouble(3)) + "   ");
@@ -234,16 +235,16 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	}
 	
 	
-	private ArrayList<Map<String, String>> buscarProdutos(String nome) {
+	private ArrayList<HashMap<String, String>> buscarProdutos(String nome) {
 		// buscar todos os produtos do banco
 		if (edt_id.getText().toString().equals("")) //caso não seja consulta por código
 		{
 			Cursor c = helper.getReadableDatabase().rawQuery("select _id,  cd_prd, nm_prd, vl_vnd,rf_prd,qt_prd  from produto where nm_prd like '%"+nome+"%' ORDER BY nm_prd ", null);
-			produtos = new ArrayList<Map<String,String>>();
+			produtos = new ArrayList<HashMap<String,String>>();
 			DecimalFormat df = new DecimalFormat(",##0.00");
 			while (c.moveToNext()) 
 			{
-				Map<String, String> mapa = new HashMap<String,String>();
+				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd",  c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
 				mapa.put("qt_prd", "0"+"");
@@ -260,11 +261,11 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		}else
 		{
 			Cursor c = helper.getReadableDatabase().rawQuery("select _id,  cd_prd, nm_prd, vl_vnd,rf_prd,qt_prd  from produto where cd_prd="+edt_id.getText().toString(), null);
-			produtos = new ArrayList<Map<String,String>>();
+			produtos = new ArrayList<HashMap<String,String>>();
 			DecimalFormat df = new DecimalFormat(",##0.00");
 			while (c.moveToNext()) 
 			{
-				Map<String, String> mapa = new HashMap<String,String>();
+				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd",  c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
 				mapa.put("qt_prd", "0"+"");
@@ -292,7 +293,9 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //				buscarProdutos(edt_descricao.getText().toString()), R.layout.listview_produtospedido,
 //				de, para);
 		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
+//		adapter.setProdutos(produtos);
 		listprd.setAdapter(adapter);
+//		produtos = adapter.getProdutos();
 
 	}
 	
@@ -304,7 +307,9 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //				buscarProdutos(edt_descricao.getText().toString()), R.layout.listview_produtospedido,
 //				de, para);
 		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
+//		adapter.setProdutos(produtos);
 		listprd.setAdapter(adapter);
+//		produtos = adapter.getProdutos();
 
 	}
 	
@@ -319,6 +324,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			 quant = (String) obj.get("qt_prd");
 			 Log.i(LOG, "\n i="+ i + " " + quant  );
 		}
+		
 		Boolean flagvalida = true;
 		if (btcd_cli.getText().toString().equals("Cliente")) {
 			Toast.makeText(this, "Entre com o cliente!", Toast.LENGTH_SHORT)
@@ -425,86 +431,6 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	}
 	
 	
-	public class CustomAdapter extends ArrayAdapter<Map<String, String>>
-	{
-	    ArrayList<Map<String, String>> list=new ArrayList<Map<String,String>>();
-	    Context context;
-	    int layoutResourceId;
-        public TextView cd_prd, nm_prd, vl_total;
-        public EditText qt_prd, vl_vnd;
 
-	    public CustomAdapter(Context context,int layoutResourceId,ArrayList<Map<String, String>> l)
-	    {
-	        super(context, layoutResourceId, l);
-	        this.list=l;
-	        this.context=context;
-	        this.layoutResourceId=layoutResourceId;
-
-	    }
-
-	    @Override
-	    public View getView(final int position, View convertView, ViewGroup parrent)
-	    {
-	        Map<String, String>hashmap_Current;
-	        View view=convertView;
-	        final ViewHolder holder;
-
-	        if (view==null)
-	        {
-	            LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	            view=layoutInflater.inflate(layoutResourceId, null);
-	        holder=new ViewHolder();
-	        cd_prd =(TextView)view.findViewById(R.id.txt_cdprd);
-	        nm_prd =(TextView)view.findViewById(R.id.txt_nmprd);        
-	        qt_prd =(EditText)view.findViewById(R.id.edt_quant);
-	        vl_vnd =(EditText)view.findViewById(R.id.edt_valorunt);
-	        vl_total =(TextView)view.findViewById(R.id.txt_valortotal);
-	        view.setTag(holder);
-	        }else{
-
-	        	holder=(ViewHolder)view.getTag();
-	        }
-
-	        hashmap_Current=new HashMap<String, String>();
-	        hashmap_Current=(HashMap<String, String>) list.get(position);
-
-	        Log.e(LOG, hashmap_Current.toString());
-
-
-	        cd_prd.setText(hashmap_Current.get("cd_prd"));       
-	        nm_prd.setText(hashmap_Current.get("nm_prd"));       
-	        qt_prd.setText(hashmap_Current.get("qt_prd"));       
-	        vl_vnd.setText(hashmap_Current.get("vl_vnd"));
-	        vl_total.setText(hashmap_Current.get("vl_total"));
-
-//	        qt_prd.setOnFocusChangeListener(new OnFocusChangeListener() {
-//				
-//				@Override
-//				public void onFocusChange(View v, boolean hasFocus) {
-//					// TODO Auto-generated method stub
-//					if(!hasFocus){
-//						Log.i(LOG, "ONFOCUSCHANGE");
-//						String s = ((EditText) v).getText().toString();
-//						Log.i(LOG, s);
-//						DecimalFormat df = new DecimalFormat(",##0.00");
-//						Map<String, String> mapa = new HashMap<String,String>();
-//						mapa.put("cd_prd",  cd_prd.getText().toString());
-//						mapa.put("nm_prd", nm_prd.getText().toString());
-//						mapa.put("qt_prd", s);
-//						mapa.put("vl_vnd", vl_vnd.getText().toString()+"   ");
-//						mapa.put("vl_total", "");
-//						produtos.set(position,mapa);
-//						
-//					}
-//				}
-//			});
-	        return view;
-	    }
-
-	    class ViewHolder {
-	        public TextView cd_prd, nm_prd, vl_total;
-	        public EditText qt_prd, vl_vnd;
-	    }
-	}
 
 }
