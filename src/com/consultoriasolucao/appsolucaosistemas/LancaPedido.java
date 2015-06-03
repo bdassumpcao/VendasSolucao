@@ -99,8 +99,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.ds_formapgto,android.R.layout.simple_spinner_item);
 		spnds_formapgto = (Spinner) findViewById(R.id.spnds_formapgto);
-		spnds_formapgto.setAdapter(adapter1);
-					 		
+		spnds_formapgto.setAdapter(adapter1);		 		
 		
 		Calendar calendar = Calendar.getInstance();
 		ano = calendar.get(Calendar.YEAR);
