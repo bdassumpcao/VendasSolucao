@@ -25,11 +25,13 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -318,12 +320,41 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	{
 
 		int x = listprd.getAdapter().getCount();
-		String quant = "";
 		for(int i=0; i<x; i++){
+			SQLiteDatabase db = helper.getWritableDatabase();
+			String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
+
 			HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
-			 quant = (String) obj.get("qt_prd");
-			 Log.i(LOG, "\n i="+ i + " " + quant  );
-		}
+			cd_prd = (String) obj.get("cd_prd");
+			nm_prd = (String) obj.get("nm_prd");
+			qt_prd = (String) obj.get("qt_prd");
+			vl_vnd = (String) obj.get("vl_prd");
+			vl_total = (String) obj.get("vl_total");
+			
+			if(!qt_prd.equals(""))
+				if(!qt_prd.equals("0")){
+					String codbarras="";
+					SQLiteDatabase d = helper.getReadableDatabase();
+					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
+					cursor.moveToNext();
+					
+					if (cursor.getCount() !=0)
+					{		
+					  codbarras = cursor.getString(0);
+				      cursor.close();
+					}
+					ContentValues values = new ContentValues();
+					values.put("cd_pedido", txtcd_pedido.getText().toString());
+					values.put("cd_prd", cd_prd);
+					values.put("qt_iten", qt_prd);
+					values.put("vl_iten", "1");
+					values.put("codbarras", codbarras);
+					long resultado = db.insert("itenspedido", null, values);
+					Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+		
+				}
+			}
+		
 		
 		Boolean flagvalida = true;
 		if (btcd_cli.getText().toString().equals("Cliente")) {
@@ -407,6 +438,36 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			ContextMenuInfo menuInfo) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_itenspedido, menu);
+		
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// Toast.makeText(this, item.toString(), Toast.LENGTH_LONG).show();
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		String cd_lancamento;
+
+		switch (item.getItemId()) {
+		case R.id.remover_itenpedido:
+
+			cd_lancamento = produtos.get(info.position).get("cd_pedido");
+			String cd_pedido = produtos.get(info.position).get("cd_pedido");
+			cd_lancamento = produtos.get(info.position).get("cd_pedido");
+
+			produtos.remove(info.position);
+			listprd.invalidateViews();
+
+			helper.getWritableDatabase().execSQL(
+					"delete from itenspedido where _id =" + cd_lancamento);
+
+			atualizavalorespedido(txtcd_pedido.getText().toString());
+			buscaritenspedido(txtcd_pedido.getText().toString());
+			return true;
+
+		default:
+			return super.onContextItemSelected(item);
+		}
 		
 	}
 
