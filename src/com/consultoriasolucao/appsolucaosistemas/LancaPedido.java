@@ -101,15 +101,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.ds_formapgto,android.R.layout.simple_spinner_item);
 		spnds_formapgto = (Spinner) findViewById(R.id.spnds_formapgto);
-		spnds_formapgto.setAdapter(adapter1);
-					 		
+		spnds_formapgto.setAdapter(adapter1);				 		
 		
 		Calendar calendar = Calendar.getInstance();
 		ano = calendar.get(Calendar.YEAR);
 		mes = calendar.get(Calendar.MONTH);
-		dia = calendar.get(Calendar.DAY_OF_MONTH);
-		
-
+		dia = calendar.get(Calendar.DAY_OF_MONTH);		
 
 		Intent intent = getIntent();
 		if (intent.hasExtra(EXTRA_CD_PEDIDO)) 
@@ -127,8 +124,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			
 			//verificando qual item do sppiner foi selecinado									 	
 			int spinnerPosition = adapter1.getPosition(cursor.getString(5));
-			spnds_formapgto.setSelection(spinnerPosition);
-			
+			spnds_formapgto.setSelection(spinnerPosition);			
 			
 			SQLiteDatabase db = helper.getReadableDatabase();
 			Cursor cursor1 = db.rawQuery("SELECT  cd_cli, nm_cli from cliente where cd_cli="+  txtcd_cli.getText().toString(), null);
@@ -138,8 +134,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			cursor1.close();
 			
 			atualizavalorespedido(txtcd_pedido.getText().toString());
-			buscarprodutos();
-			
+			buscarprodutos();			
 				
 			}	
 		buscarprodutos();
@@ -148,7 +143,6 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 	public void selecionarDataLancamento(View view) {
 		showDialog(view.getId());
-
 	}
 
 
@@ -163,13 +157,11 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		{
 			SQLiteDatabase db = helper.getReadableDatabase();
 			
-			
 			Cursor cursor = db.rawQuery("SELECT  cd_cli, nm_cli from cliente where cd_cli="+  txtcd_cli.getText().toString(), null);
 			cursor.moveToFirst();
 			
 			btcd_cli.setText(cursor.getString(1).toString());				
-		}
-		
+		}	
 		
 	}
 
@@ -179,13 +171,11 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == Activity.RESULT_OK)
 		{
-					
 			txtcd_cli.setText(data.getStringExtra(EXTRA_CD_CLI));
 			SQLiteDatabase db = helper.getReadableDatabase();
 			Cursor cursor = db.rawQuery("SELECT  cd_cli, nm_cli from cliente where cd_cli="+  txtcd_cli.getText().toString(), null);
 			cursor.moveToFirst();
-			btcd_cli.setText(cursor.getString(1).toString());
-			
+			btcd_cli.setText(cursor.getString(1).toString());		
 			
 		}
 		
@@ -249,7 +239,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", df.format(Double.parseDouble("0"))+"");
+				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 //				mapa.put("rf_prd", "Ref.: "+ c.getString(4));	
@@ -270,7 +260,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", df.format(Double.parseDouble("0"))+"");
+				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 				edt_descricao.setText(c.getString(2));
@@ -295,32 +285,22 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //				buscarProdutos(edt_descricao.getText().toString()), R.layout.listview_produtospedido,
 //				de, para);
 		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
-//		adapter.setProdutos(produtos);
 		listprd.setAdapter(adapter);
-//		produtos = adapter.getProdutos();
-
 	}
 	
 	public void buscarprodutos(View view) {
-		String de[] = { "cd_prd", "nm_prd", "qt_prd", "vl_vnd", "vl_total" };
-		int para[] = { R.id.txt_cdprd, R.id.txt_nmprd, R.id.edt_quant, R.id.edt_valorunt, R.id.txt_valortotal };
-
-//		SimpleAdapter adapter = new SimpleAdapter(this,
-//				buscarProdutos(edt_descricao.getText().toString()), R.layout.listview_produtospedido,
-//				de, para);
-		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
-//		adapter.setProdutos(produtos);
-		listprd.setAdapter(adapter);
-//		produtos = adapter.getProdutos();
-
+		if(!cbConferir.isChecked()){
+			CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
+			listprd.setAdapter(adapter);
+		}
 	}
 	
 
 	public void salvaPedido(View view)
 	{
 		//se Conferir não estiver clicado então insere produtos no pedido
-		if(!cbConferir.isChecked()){
-			int x = listprd.getAdapter().getCount();
+		int x = listprd.getAdapter().getCount();
+		if(!cbConferir.isChecked()){			
 			for(int i=0; i<x; i++){
 				SQLiteDatabase db = helper.getWritableDatabase();
 				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
@@ -332,19 +312,21 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				vl_vnd = (String) obj.get("vl_prd");
 				vl_total = (String) obj.get("vl_total");
 				
+				String codbarras="";
+				SQLiteDatabase d = helper.getReadableDatabase();
+				Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
+				cursor.moveToNext();
+				
+				if (cursor.getCount() !=0)
+				{		
+				  codbarras = cursor.getString(0);
+			      cursor.close();
+				}
+				
 				if(!qt_prd.equals(""))
 					if(!qt_prd.equals("0,00"))
 						if(!qt_prd.equals("0")){
-							String codbarras="";
-							SQLiteDatabase d = helper.getReadableDatabase();
-							Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
-							cursor.moveToNext();
-							
-							if (cursor.getCount() !=0)
-							{		
-							  codbarras = cursor.getString(0);
-						      cursor.close();
-							}
+							DecimalFormat df = new DecimalFormat(",##0.00");
 							ContentValues values = new ContentValues();
 							values.put("cd_pedido", txtcd_pedido.getText().toString());
 							values.put("cd_prd", cd_prd);
@@ -353,12 +335,11 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							values.put("codbarras", codbarras);
 							long resultado = db.insert("itenspedido", null, values);
 							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
-				
+							buscarprodutos();
 						}
 			}
 		}
 		else if(cbConferir.isChecked()){
-			int x = listprd.getAdapter().getCount();
 			for(int i=0; i<x; i++){
 				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
 				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
@@ -368,8 +349,32 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				vl_vnd = (String) obj.get("vl_prd");
 				vl_total = (String) obj.get("vl_total");
 				
-//				if(qt_prd.equals("") || qt_prd.equals("0,00") || qt_prd.equals("0"))
+//				if(qt_prd.equals("0"))
 							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+				
+//				else{
+//					String codbarras="";
+//					SQLiteDatabase d = helper.getReadableDatabase();
+//					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
+//					cursor.moveToNext();
+//					
+//					if (cursor.getCount() !=0)
+//					{		
+//					  codbarras = cursor.getString(0);
+//				      cursor.close();
+//					}
+//					
+//					SQLiteDatabase db = helper.getWritableDatabase();	
+//					ContentValues values = new ContentValues();
+//						
+//					values.put("cd_pedido", txtcd_pedido.getText().toString());
+//					values.put("cd_prd", cd_prd);
+//					values.put("qt_iten", qt_prd);
+//					values.put("vl_iten", "1");
+//					values.put("codbarras", codbarras);
+//					long resultado = db.insert("itenspedido", null, values);
+//				}
+				
 			}
 		}
 		
@@ -387,7 +392,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			// primeiro tem que verificar se ja foi inserido o registro do
 			// pedido
 			
-				ContentValues values = new ContentValues();;
+				ContentValues values = new ContentValues();
 				dt_lancamento = ConvertToDate(dia+"/"+(mes+1)+"/"+ano);
 				values.put("dt_lancamento", dt_lancamento.getTime());
 				values.put("vl_bruto", 0);

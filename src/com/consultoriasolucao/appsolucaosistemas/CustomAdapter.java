@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,8 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 	        holder.qt_prd =(EditText)view.findViewById(R.id.edt_quant);
 	        holder.vl_vnd =(EditText)view.findViewById(R.id.edt_valorunt);
 	        holder.vl_total =(TextView)view.findViewById(R.id.txt_valortotal);
+	        holder.qt_prd.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+	        holder.vl_vnd.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 	        
 	        view.setTag(holder);
 	        
@@ -76,7 +79,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 	        holder.cd_prd.setText(hashmap_Current.get("cd_prd"));       
 	        holder.nm_prd.setText(hashmap_Current.get("nm_prd"));       
 	        holder.qt_prd.setText(hashmap_Current.get("qt_prd"));       
-	        holder.vl_vnd.setText(hashmap_Current.get("vl_vnd").replace(".", ","));
+	        holder.vl_vnd.setText(hashmap_Current.get("vl_vnd"));
 	        holder.vl_total.setText(hashmap_Current.get("vl_total"));
 
 	        holder.qt_prd.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -85,18 +88,19 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 				public void onFocusChange(View v, boolean hasFocus) {
 					// TODO Auto-generated method stub
 					if(!hasFocus){
+						DecimalFormat df = new DecimalFormat(",##0.00");
 						Log.i(LOG, "ONFOCUSCHANGE");
-						String s = ((EditText) v).getText().toString();
+						String qnt = ((EditText) v).getText().toString();
 						String vl_vnd = holder.vl_vnd.getText().toString();
-						if(s.equals(""))
-							s = "0";
-						Log.i(LOG, "s="+s+" position="+position + " "+vl_vnd);
+						if(qnt.equals(""))
+							qnt = "0";
+						Log.i(LOG, "qnt="+qnt+" position="+position + " "+vl_vnd);
 
 						HashMap<String, String> mapa = new HashMap<String,String>();
 						mapa.put("cd_prd",  holder.cd_prd.getText().toString());
 //						df.format(c.getDouble(3))+"   "
 						mapa.put("nm_prd", holder.nm_prd.getText().toString());
-						mapa.put("qt_prd", s);
+						mapa.put("qt_prd", qnt);
 						mapa.put("vl_vnd", vl_vnd);
 						mapa.put("vl_total", "");
 						produtos.set(position, mapa);	
@@ -111,6 +115,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
     public void setProdutos(ArrayList<HashMap<String, String>> p){
     	this.produtos = p;   
     	for(int i=0;i<this.produtos.size();i++){
+    		DecimalFormat df = new DecimalFormat(",##0.00");
 			HashMap<String,String> obj = (HashMap<String,String>) this.produtos.get(i);
 			String cd_prd = (String) obj.get("cd_prd");
 			String nm_prd = (String) obj.get("nm_prd");
