@@ -4,45 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-            </TableRow>
-        </LinearLayout>
-    </ScrollView>
-
      <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     
     <EditText
         android:id="@+id/txtcd_cli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        
         android:inputType="numberDecimal" />
     
     <Button
         android:id="@+id/btcd_cli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+      
         android:onClick="consultaCliente"
         android:textSize="14sp"
         android:text="Cliente" />
-</TableRow>
+	</TableRow>
 
         <TextView
             android:id="@+id/textView2"
@@ -55,6 +38,7 @@
      android:id="@+id/txtds_obs"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
+     android:background="@drawable/edittext"
      android:text="" />
    
     <TableRow
@@ -213,6 +197,7 @@
                android:id="@+id/bt_buscaproduto"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:background="@drawable/button"
                android:layout_weight="0.08"
                android:onClick="buscarprodutos"
                android:text="Busca"
@@ -222,6 +207,7 @@
                android:id="@+id/btsalvapedido"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:background="@drawable/button"
                android:onClick="salvaPedido"
                android:text="Salva"
                android:textSize="14sp" />
@@ -230,6 +216,7 @@
                android:id="@+id/bt_sair"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:background="@drawable/button"
                android:onClick="Sair"
                android:text="Sair"
                android:textSize="14sp" />
