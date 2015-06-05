@@ -68,6 +68,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	private SimpleDateFormat dateFormat;
 	private DatabaseHelper helper;
 	private ArrayList<HashMap<String, String>> produtos;
+	private CustomAdapter adapter;
 	public static final String EXTRA_CD_CLI = "com.consultoriasolucao.appsolucaosistemas.EXTRA_CD_CLI";
 	public static final String EXTRA_CD_PEDIDO = "com.consultoriasolucao.appsolucaosistemas.EXTRA_CD_PEDIDO";
 
@@ -203,7 +204,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			HashMap<String, String> mapa = new HashMap<String, String>();
 			mapa.put("cd_prd", c.getString(1));
 			mapa.put("iditenpedido", c.getString(0));
-			mapa.put("qt_prd", df.format(c.getDouble(3)) + "   ");
+			mapa.put("qt_prd", df.format(c.getDouble(3)) + "");
 			mapa.put("nm_prd", c.getString(2));
 			mapa.put("vl_vnd", df.format(c.getDouble(4)));
 			mapa.put("vl_total", "Total R$:\n" + df.format(c.getDouble(5)) + "\n");
@@ -211,6 +212,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		}
 		c.close();
 		// construir objeto de retorno que é uma String[]
+		Log.i(LOG, "ArrayList<HashMap<String, String>> buscaritenspedido(cd_pedido)");
 		return produtos;
 	}
 	
@@ -222,7 +224,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //		SimpleAdapter adapter = new SimpleAdapter(this,
 //				buscaritensPedido(cd_pedido), R.layout.listview_produtospedido,
 //				de, para);
-		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscaritensPedido(cd_pedido));
+		Log.i(LOG, "buscaritenspedido(cd_pedido)");
+		adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscaritensPedido(cd_pedido));
 		listprd.setAdapter(adapter);
 	}
 	
@@ -284,13 +287,13 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //		SimpleAdapter adapter = new SimpleAdapter(this,
 //				buscarProdutos(edt_descricao.getText().toString()), R.layout.listview_produtospedido,
 //				de, para);
-		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
+		adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
 		listprd.setAdapter(adapter);
 	}
 	
 	public void buscarprodutos(View view) {
 		if(!cbConferir.isChecked()){
-			CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
+			adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
 			listprd.setAdapter(adapter);
 		}
 	}
@@ -298,6 +301,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 	public void salvaPedido(View view)
 	{
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); 
 		//se Conferir não estiver clicado então insere produtos no pedido
 		int x = listprd.getAdapter().getCount();
 		DecimalFormat df = new DecimalFormat(",##0.00");
@@ -336,7 +340,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							values.put("vl_iten", vl_vnd.replace(",", "."));
 							values.put("codbarras", codbarras);
 							long resultado = db.insert("itenspedido", null, values);
-							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+							Log.i(LOG, "\n INSERE i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
 							buscarprodutos();
 						}
 			}
@@ -353,12 +357,16 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				vl_total = obj.get("vl_total");
 				
 				if(qt_prd.equals("0")){
-					Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " iditenpedido=" + iditenpedido + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+					produtos.remove(i);
+					listprd.invalidateViews();
+					Log.i(LOG, "\n REMOVE i="+ i + " cd_prd=" + cd_prd + " iditenpedido=" + iditenpedido + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
 					helper.getWritableDatabase().execSQL(
-							"delete from itenspedido where _id =" + iditenpedido);
+							"delete from itenspedido where _id =" + iditenpedido);						
+					adapter.clear();
+					adapter.refresh(buscaritensPedido(txtcd_pedido.getText().toString()));
 					x = listprd.getAdapter().getCount();
-					Log.i(LOG, "oiiiii");
-						
+					if(x==0)
+						break;
 				}
 				else{
 					String codbarras="";
@@ -380,10 +388,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					values.put("codbarras", codbarras);
 					SQLiteDatabase db = helper.getWritableDatabase();
 					db.update("itenspedido", values, "_id ="+iditenpedido, null);
+					buscaritenspedido(txtcd_pedido.getText().toString());
 				}
-				buscaritenspedido(txtcd_pedido.getText().toString());
-
-				atualizavalorespedido(txtcd_pedido.getText().toString());
+				
+				
+//				atualizavalorespedido(txtcd_pedido.getText().toString());
+				Log.i(LOG, "i="+i+" x="+x);
 			}
 		}
 		
