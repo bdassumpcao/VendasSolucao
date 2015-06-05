@@ -202,10 +202,10 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		while (c.moveToNext()) {
 			HashMap<String, String> mapa = new HashMap<String, String>();
 			mapa.put("cd_prd", c.getString(1));
-//			mapa.put("iditenpedido", c.getString(0));
-			mapa.put("qt_iten", df.format(c.getDouble(3)) + "   ");
+			mapa.put("iditenpedido", c.getString(0));
+			mapa.put("qt_prd", df.format(c.getDouble(3)) + "   ");
 			mapa.put("nm_prd", c.getString(2));
-			mapa.put("vl_iten", df.format(c.getDouble(4)));
+			mapa.put("vl_vnd", df.format(c.getDouble(4)));
 			mapa.put("vl_total", "Total R$:\n" + df.format(c.getDouble(5)) + "\n");
 			produtos.add(mapa);
 		}
@@ -216,13 +216,13 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	
 	
 	public void buscaritenspedido(String cd_pedido) {
-		String de[] = { "cd_prd", "qt_iten", "nm_prd","vl_iten", "vl_total" };
+		String de[] = { "cd_prd", "qt_prd", "nm_prd","vl_vnd", "vl_total" };
 		int para[] = { R.id.txt_cdprd, R.id.edt_quant,R.id.txt_nmprd, R.id.edt_valorunt, R.id.txt_valortotal };
 
-		SimpleAdapter adapter = new SimpleAdapter(this,
-				buscaritensPedido(cd_pedido), R.layout.listview_produtospedido,
-				de, para);
-
+//		SimpleAdapter adapter = new SimpleAdapter(this,
+//				buscaritensPedido(cd_pedido), R.layout.listview_produtospedido,
+//				de, para);
+		CustomAdapter adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscaritensPedido(cd_pedido));
 		listprd.setAdapter(adapter);
 	}
 	
@@ -300,17 +300,19 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	{
 		//se Conferir não estiver clicado então insere produtos no pedido
 		int x = listprd.getAdapter().getCount();
+		DecimalFormat df = new DecimalFormat(",##0.00");
 		if(!cbConferir.isChecked()){			
 			for(int i=0; i<x; i++){
 				SQLiteDatabase db = helper.getWritableDatabase();
 				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
 	
 				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
-				cd_prd = (String) obj.get("cd_prd");
-				nm_prd = (String) obj.get("nm_prd");
-				qt_prd = (String) obj.get("qt_prd");
-				vl_vnd = (String) obj.get("vl_prd");
-				vl_total = (String) obj.get("vl_total");
+				cd_prd = obj.get("cd_prd");
+				nm_prd = obj.get("nm_prd");
+				qt_prd = obj.get("qt_prd");
+				vl_vnd = obj.get("vl_vnd");
+				vl_total = obj.get("vl_total");
+				
 				
 				String codbarras="";
 				SQLiteDatabase d = helper.getReadableDatabase();
@@ -326,12 +328,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				if(!qt_prd.equals(""))
 					if(!qt_prd.equals("0,00"))
 						if(!qt_prd.equals("0")){
-							DecimalFormat df = new DecimalFormat(",##0.00");
+							
 							ContentValues values = new ContentValues();
 							values.put("cd_pedido", txtcd_pedido.getText().toString());
 							values.put("cd_prd", cd_prd);
-							values.put("qt_iten", qt_prd);
-							values.put("vl_iten", "1");
+							values.put("qt_iten", qt_prd.replace(",", "."));
+							values.put("vl_iten", vl_vnd.replace(",", "."));
 							values.put("codbarras", codbarras);
 							long resultado = db.insert("itenspedido", null, values);
 							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
@@ -341,40 +343,47 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		}
 		else if(cbConferir.isChecked()){
 			for(int i=0; i<x; i++){
-				String cd_prd = "", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
+				String cd_prd = "", iditenpedido="", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
 				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
-				cd_prd = (String) obj.get("cd_prd");
-				nm_prd = (String) obj.get("nm_prd");
-				qt_prd = (String) obj.get("qt_prd");
-				vl_vnd = (String) obj.get("vl_prd");
-				vl_total = (String) obj.get("vl_total");
+				cd_prd = obj.get("cd_prd");
+				iditenpedido = obj.get("iditenpedido");
+				nm_prd = obj.get("nm_prd");
+				qt_prd = obj.get("qt_prd");
+				vl_vnd = obj.get("vl_vnd");
+				vl_total = obj.get("vl_total");
 				
-//				if(qt_prd.equals("0"))
-							Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
-				
-//				else{
-//					String codbarras="";
-//					SQLiteDatabase d = helper.getReadableDatabase();
-//					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
-//					cursor.moveToNext();
-//					
-//					if (cursor.getCount() !=0)
-//					{		
-//					  codbarras = cursor.getString(0);
-//				      cursor.close();
-//					}
-//					
-//					SQLiteDatabase db = helper.getWritableDatabase();	
-//					ContentValues values = new ContentValues();
-//						
-//					values.put("cd_pedido", txtcd_pedido.getText().toString());
-//					values.put("cd_prd", cd_prd);
-//					values.put("qt_iten", qt_prd);
-//					values.put("vl_iten", "1");
-//					values.put("codbarras", codbarras);
-//					long resultado = db.insert("itenspedido", null, values);
-//				}
-				
+				if(qt_prd.equals("0")){
+					Log.i(LOG, "\n i="+ i + " cd_prd=" + cd_prd + " iditenpedido=" + iditenpedido + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
+					helper.getWritableDatabase().execSQL(
+							"delete from itenspedido where _id =" + iditenpedido);
+					x = listprd.getAdapter().getCount();
+					Log.i(LOG, "oiiiii");
+						
+				}
+				else{
+					String codbarras="";
+					SQLiteDatabase d = helper.getReadableDatabase();
+					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
+					cursor.moveToNext();
+					
+					if (cursor.getCount() !=0)
+					{		
+					  codbarras = cursor.getString(0);
+				      cursor.close();
+					}
+					
+					ContentValues values = new ContentValues();
+					values.put("cd_pedido", txtcd_pedido.getText().toString());
+					values.put("cd_prd", cd_prd);
+					values.put("qt_iten", qt_prd.replace(",", "."));
+					values.put("vl_iten", vl_vnd.replace(",", "."));
+					values.put("codbarras", codbarras);
+					SQLiteDatabase db = helper.getWritableDatabase();
+					db.update("itenspedido", values, "_id ="+iditenpedido, null);
+				}
+				buscaritenspedido(txtcd_pedido.getText().toString());
+
+				atualizavalorespedido(txtcd_pedido.getText().toString());
 			}
 		}
 		
@@ -401,7 +410,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					edt_desconto.setText("0");
 				}
 				else
-					values.put("vl_desconto", edt_desconto.getText().toString().replace(",", "."));
+				values.put("vl_desconto", edt_desconto.getText().toString().replace(",", "."));
 				values.put("vl_total", 0);
 				values.put("cd_cli", txtcd_cli.getText().toString());
 				values.put("ds_obs", txtds_obs.getText().toString());

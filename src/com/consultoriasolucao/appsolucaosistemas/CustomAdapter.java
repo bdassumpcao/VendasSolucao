@@ -75,7 +75,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
         HashMap<String, String> hashmap_Current = new HashMap<String, String>();
         hashmap_Current = list.get(position);
         if(hashmap_Current != null){
-
+        	holder.iditenpedido = hashmap_Current.get("iditenpedido");
 	        holder.cd_prd.setText(hashmap_Current.get("cd_prd"));       
 	        holder.nm_prd.setText(hashmap_Current.get("nm_prd"));       
 	        holder.qt_prd.setText(hashmap_Current.get("qt_prd"));       
@@ -98,7 +98,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 
 						HashMap<String, String> mapa = new HashMap<String,String>();
 						mapa.put("cd_prd",  holder.cd_prd.getText().toString());
-//						df.format(c.getDouble(3))+"   "
+						mapa.put("iditenpedido", holder.iditenpedido);
 						mapa.put("nm_prd", holder.nm_prd.getText().toString());
 						mapa.put("qt_prd", qnt);
 						mapa.put("vl_vnd", vl_vnd);
@@ -114,15 +114,6 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
     
     public void setProdutos(ArrayList<HashMap<String, String>> p){
     	this.produtos = p;   
-    	for(int i=0;i<this.produtos.size();i++){
-    		DecimalFormat df = new DecimalFormat(",##0.00");
-			HashMap<String,String> obj = (HashMap<String,String>) this.produtos.get(i);
-			String cd_prd = (String) obj.get("cd_prd");
-			String nm_prd = (String) obj.get("nm_prd");
-			String quant = (String) obj.get("qt_prd");
-			String vl_vnd = (String) obj.get("vl_vnd");
-    		Log.i(LOG, "position="+i+" $ "+cd_prd+" $ "+nm_prd+" $ "+quant+" $ "+vl_vnd );
-    	}
     }
     
     public ArrayList<HashMap<String, String>> getProdutos(){
@@ -130,6 +121,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
     }
 
     private static class Holder {
+    	String iditenpedido;
         public TextView cd_prd, nm_prd, vl_total;
         public EditText qt_prd, vl_vnd;
     }
