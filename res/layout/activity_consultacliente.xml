@@ -24,7 +24,7 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/buscar" 
+        android:src="@drawable/buttonbusca" 
         android:onClick="buscarcliente"
         android:layout_gravity="center"/>
 

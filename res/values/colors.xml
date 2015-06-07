@@ -10,6 +10,8 @@
 <color name="vermelho">#FF0000</color>
 <color name="branco">#FFFFFF</color>
 <color name="cinzaclaro">#EEEEEE</color>
+<color name="Layout">#E0EEEE</color>
+<color name="PRATA">#f0f8ff</color>
 
 
 </resources>
