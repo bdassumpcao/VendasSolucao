@@ -106,12 +106,12 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
     }
     
     public static void setProdutos(Holder holder, View v, int position){
-    	Log.i(LOG, "SETPRODUTOS");
+//    	Log.i(LOG, "SETPRODUTOS");
 		String qnt = holder.qt_prd.getText().toString();
 		String vl_vnd = holder.vl_vnd.getText().toString();
 		if(qnt.equals(""))
 			qnt = "0";
-		Log.i(LOG, "qnt="+qnt+" position="+position + " "+vl_vnd);
+//		Log.i(LOG, "qnt="+qnt+" position="+position + " "+vl_vnd);
 
 		HashMap<String, String> mapa = new HashMap<String,String>();
 		mapa.put("cd_prd",  holder.cd_prd.getText().toString());
@@ -124,7 +124,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 		else
 			mapa.put("vl_total", holder.vl_total.getText().toString());
 		produtos.set(position, mapa);
-		Log.i(LOG, "\n SETPRD position="+ position + " cd_prd=" + holder.cd_prd.getText().toString() + " iditenpedido=" + holder.iditenpedido + " nm_prd=" + holder.nm_prd.getText().toString() + " qt_prd= " + qnt + " vl_vnd= " + vl_vnd);
+//		Log.i(LOG, "\n SETPRD position="+ position + " cd_prd=" + holder.cd_prd.getText().toString() + " iditenpedido=" + holder.iditenpedido + " nm_prd=" + holder.nm_prd.getText().toString() + " qt_prd= " + qnt + " vl_vnd= " + vl_vnd);
     }
     
     public static ArrayList<HashMap<String, String>> getProdutos(){

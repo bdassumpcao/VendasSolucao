@@ -214,7 +214,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		}
 		c.close();
 		// construir objeto de retorno que é uma String[]
-		Log.i(LOG, "ArrayList<HashMap<String, String>> buscaritenspedido(cd_pedido)");
+//		Log.i(LOG, "ArrayList<HashMap<String, String>> buscaritenspedido(cd_pedido)");
 		return produtos;
 	}
 	
@@ -226,7 +226,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 //		SimpleAdapter adapter = new SimpleAdapter(this,
 //				buscaritensPedido(cd_pedido), R.layout.listview_produtospedido,
 //				de, para);
-		Log.i(LOG, "buscaritenspedido(cd_pedido)");
+//		Log.i(LOG, "buscaritenspedido(cd_pedido)");
 		adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscaritensPedido(cd_pedido));
 		listprd.setAdapter(adapter);
 	}
@@ -390,11 +390,22 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							long resultado = db.insert("itenspedido", null, values);
 							Log.i(LOG, "\n INSERE i="+ i + " cd_prd=" + cd_prd + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
 							buscarprodutos();
+							atualizavalorespedido(txtcd_pedido.getText().toString());
 						}
 			}
 		}
 		else if(cbConferir.isChecked()){
+			Boolean alterado = false;
+		
+			int j=0;
+			String id_Alterado[] = new String[100];
+			String cd_Alterado[] = new String[100];
+			String nm_Alterado[] = new String[100];
+			String qt_Alterado[] = new String[100];
+			String vl_Alterado[] = new String[100];
+			String index_Alterado[] = new String[100];
 			for(int i=0; i<x; i++){
+				
 				String cd_prd = "", iditenpedido="", nm_prd="", qt_prd="", vl_vnd="", vl_total="";
 				HashMap<String,String> obj = (HashMap<String,String>) listprd.getAdapter().getItem(i);
 				cd_prd = obj.get("cd_prd");
@@ -404,44 +415,82 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				vl_vnd = obj.get("vl_vnd");
 				vl_total = obj.get("vl_total");
 				
-				if(qt_prd.equals("0")){
-					produtos.remove(i);
-					listprd.invalidateViews();
-					helper.getWritableDatabase().execSQL(
-							"delete from itenspedido where _id =" + iditenpedido);	
-					
-					atualizavalorespedido(txtcd_pedido.getText().toString());
-					buscaritensPedido(txtcd_pedido.getText().toString());
-			
-				}
-				else{
-					String codbarras="";
-					SQLiteDatabase d = helper.getReadableDatabase();
-					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_prd, null);
-					cursor.moveToNext();
-					
-					if (cursor.getCount() !=0)
-					{		
-					  codbarras = cursor.getString(0);
-				      cursor.close();
+				
+				
+				Cursor c = helper.getReadableDatabase().rawQuery("select a._id,  a.cd_prd, b.nm_prd, a.qt_iten ,a.vl_iten,(a.qt_iten*a.vl_iten) from itenspedido a join produto b on (a.cd_prd=b.cd_prd) where a.cd_pedido=" +txtcd_pedido.getText().toString()+" and a.cd_prd="+cd_prd, null);
+				while (c.moveToNext()) 
+				{
+					String q = df.format(c.getDouble(3));
+					String v = df.format(c.getDouble(4));
+					Log.i(LOG, cd_prd+"| qt_prd="+qt_prd+"/"+q+" vl_vnd="+vl_vnd+"/"+v);
+					if(!qt_prd.equals(q) | !vl_vnd.equals(v)){
+						alterado = true;
+						id_Alterado[j] = iditenpedido;
+						cd_Alterado[j] = cd_prd;
+						nm_Alterado[j] = nm_prd;
+						qt_Alterado[j] = qt_prd;
+						vl_Alterado[j] = vl_vnd;
+						index_Alterado[j] = i+"";
+						Log.i(LOG, "i="+i);
+						j++;
 					}
-					
-					ContentValues values = new ContentValues();
-					values.put("cd_pedido", txtcd_pedido.getText().toString());
-					values.put("cd_prd", cd_prd);
-					values.put("qt_iten", qt_prd.replace(",", "."));
-					values.put("vl_iten", vl_vnd.replace(",", "."));
-					values.put("codbarras", codbarras);
-					SQLiteDatabase db = helper.getWritableDatabase();
-					db.update("itenspedido", values, "_id ="+iditenpedido, null);					
-					atualizavalorespedido(txtcd_pedido.getText().toString());
-					buscaritenspedido(txtcd_pedido.getText().toString());
+				c.close();
 				}
 			}
-		}
-		buscaritensPedido(txtcd_pedido.getText().toString());
-		atualizavalorespedido(txtcd_pedido.getText().toString());
-		
+			
+			if(alterado){
+				
+				for(int y=0; y<id_Alterado.length; y++){
+					if(id_Alterado[y]!=null){
+						Log.i(LOG, "id_Alterado[i]="+id_Alterado[y]);
+					if(qt_Alterado[y].equals("0")){
+						Log.i(LOG, "qt_prd.equals('0'))");
+						produtos.remove(Integer.parseInt(index_Alterado[y]));
+						Log.i(LOG, "produtos.remove("+index_Alterado[y]+")");
+						listprd.invalidateViews();
+						helper.getWritableDatabase().execSQL(
+								"delete from itenspedido where _id =" + id_Alterado[y]);	
+						Log.i(LOG, "delete from itenspedido where _id ="+id_Alterado[y]);	
+						id_Alterado[y]=null;
+						y=0;
+						buscaritenspedido(txtcd_pedido.getText().toString());
+						atualizavalorespedido(txtcd_pedido.getText().toString());
+						x = listprd.getAdapter().getCount();
+					}
+					else{
+						String codbarras="";
+						SQLiteDatabase d = helper.getReadableDatabase();
+						Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_Alterado[y], null);
+						cursor.moveToNext();
+						
+						if (cursor.getCount() !=0)
+						{		
+						  codbarras = cursor.getString(0);
+					      cursor.close();
+						}
+						
+						ContentValues values = new ContentValues();
+						values.put("cd_pedido", txtcd_pedido.getText().toString());
+						values.put("cd_prd", cd_Alterado[y]);
+						values.put("qt_iten", qt_Alterado[y].replace(",", "."));
+						values.put("vl_iten", vl_Alterado[y].replace(",", "."));
+						values.put("codbarras", codbarras);
+						SQLiteDatabase db = helper.getWritableDatabase();
+						db.update("itenspedido", values, "_id ="+id_Alterado[y], null);					
+						atualizavalorespedido(txtcd_pedido.getText().toString());
+						buscaritenspedido(txtcd_pedido.getText().toString());
+					}
+				
+					Log.i(LOG, "x="+x);
+					}
+				}
+			}
+			for(String s : id_Alterado){
+				if(s!=null){
+					Log.i(LOG, "s="+s);
+				}
+			}
+		}		
 	}
 
 	
