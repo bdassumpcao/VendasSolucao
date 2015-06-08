@@ -107,41 +107,38 @@ public class GerenciarPedido extends Activity implements
 		String cd_lancamento;
 
 		switch (item.getItemId()) {
-		case R.id.remover_pedido:
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");			
-			produtos.remove(info.position);
-			lista.invalidateViews();
-			db.getWritableDatabase().execSQL(
-					"delete from itenspedido where cd_pedido="+cd_lancamento);
-			db.getWritableDatabase().execSQL(
-					"delete from pedido where _id="+cd_lancamento);
-			buscarrelat();
-			return true;				
-		
-		case R.id.enviar_xmlemail:			
-			Intent intent4 = new Intent(this, Enviaremailcliente.class);
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");
-			intent4.putExtra(Enviaremailcliente.EXTRA_CD_PEDIDO, cd_lancamento);
-			startActivity(intent4);	
+			case R.id.remover_pedido:
+				cd_lancamento = produtos.get(info.position).get("cd_pedido");			
+				produtos.remove(info.position);
+				lista.invalidateViews();
+				db.getWritableDatabase().execSQL(
+						"delete from itenspedido where cd_pedido="+cd_lancamento);
+				db.getWritableDatabase().execSQL(
+						"delete from pedido where _id="+cd_lancamento);
+				buscarrelat();
+				return true;				
 			
-			Intent intent3 = new Intent(this, Enviaremailloja.class);
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");
-			intent3.putExtra(Enviaremailloja.EXTRA_CD_PEDIDO, cd_lancamento);
-			startActivity(intent3);					
-			return true;
-			
-		case R.id.editar_pedido:
-			Intent intent1 = new Intent(this, LancaPedido.class);
-			cd_lancamento = produtos.get(info.position).get("cd_pedido");
-			intent1.putExtra(LancaPedido.EXTRA_CD_PEDIDO, cd_lancamento);
-			startActivity(intent1);				
-			return true;		
-			
-
-			
-			
-		default:
-			return super.onContextItemSelected(item);
+			case R.id.enviar_xmlemail:			
+				Intent intent4 = new Intent(this, Enviaremailcliente.class);
+				cd_lancamento = produtos.get(info.position).get("cd_pedido");
+				intent4.putExtra(Enviaremailcliente.EXTRA_CD_PEDIDO, cd_lancamento);
+				startActivity(intent4);	
+				
+				Intent intent3 = new Intent(this, Enviaremailloja.class);
+				cd_lancamento = produtos.get(info.position).get("cd_pedido");
+				intent3.putExtra(Enviaremailloja.EXTRA_CD_PEDIDO, cd_lancamento);
+				startActivity(intent3);					
+				return true;
+				
+			case R.id.editar_pedido:
+				Intent intent1 = new Intent(this, LancaPedido.class);
+				cd_lancamento = produtos.get(info.position).get("cd_pedido");
+				intent1.putExtra(LancaPedido.EXTRA_CD_PEDIDO, cd_lancamento);
+				startActivity(intent1);				
+				return true;						
+				
+			default:
+				return super.onContextItemSelected(item);
 		}
 	}
 

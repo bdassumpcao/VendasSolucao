@@ -42,7 +42,7 @@
 						    <Button
 						        android:id="@+id/btcd_cli"
 						        android:layout_width="match_parent"
-						        android:layout_height="wrap_content"
+						        android:layout_height="match_parent"
 								android:background="@drawable/button"
 						        android:layout_gravity="right"
 						        android:onClick="consultaCliente"
@@ -237,14 +237,14 @@
                 </TableRow>
                 
                 <TableRow 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:layout_weight="2">
                     
                     <LinearLayout 
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="0.6"
                         android:orientation="horizontal"
                         android:layout_gravity="left|center_horizontal">

@@ -407,14 +407,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				if(qt_prd.equals("0")){
 					produtos.remove(i);
 					listprd.invalidateViews();
-					Log.i(LOG, "\n REMOVE i="+ i + " cd_prd=" + cd_prd + " iditenpedido=" + iditenpedido + " nm_prd=" + nm_prd + " qt_prd= " + qt_prd + " vl_vnd= " + vl_vnd + " vl_total=" + vl_total );
 					helper.getWritableDatabase().execSQL(
-							"delete from itenspedido where _id =" + iditenpedido);						
-					adapter.clear();
-					adapter.refresh(buscaritensPedido(txtcd_pedido.getText().toString()));
-					x = listprd.getAdapter().getCount();
-					if(x==0)
-						break;
+							"delete from itenspedido where _id =" + iditenpedido);	
+					
+					atualizavalorespedido(txtcd_pedido.getText().toString());
+					buscaritensPedido(txtcd_pedido.getText().toString());
+			
 				}
 				else{
 					String codbarras="";
@@ -435,15 +433,13 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					values.put("vl_iten", vl_vnd.replace(",", "."));
 					values.put("codbarras", codbarras);
 					SQLiteDatabase db = helper.getWritableDatabase();
-					db.update("itenspedido", values, "_id ="+iditenpedido, null);
+					db.update("itenspedido", values, "_id ="+iditenpedido, null);					
+					atualizavalorespedido(txtcd_pedido.getText().toString());
 					buscaritenspedido(txtcd_pedido.getText().toString());
 				}
-				
-				
-//				atualizavalorespedido(txtcd_pedido.getText().toString());
-				Log.i(LOG, "i="+i+" x="+x);
 			}
 		}
+		buscaritensPedido(txtcd_pedido.getText().toString());
 		atualizavalorespedido(txtcd_pedido.getText().toString());
 		
 	}

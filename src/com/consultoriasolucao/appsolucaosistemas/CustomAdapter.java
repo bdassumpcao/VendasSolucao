@@ -85,7 +85,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 				@Override
 				public void onFocusChange(View v, boolean hasFocus) {
 					// TODO Auto-generated method stub
-//					if(!hasFocus)
+					if(hasFocus)
 						setProdutos(holder, v, position);				
 
 				}
@@ -96,7 +96,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 				@Override
 				public void onFocusChange(View v, boolean hasFocus) {
 					// TODO Auto-generated method stub
-//					if(!hasFocus)
+					if(hasFocus)
 						setProdutos(holder, v, position);				
 
 				}
