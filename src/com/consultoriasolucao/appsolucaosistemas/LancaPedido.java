@@ -183,10 +183,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	}
 	
 	public void Conferir(View view) {
-		if(cbConferir.isChecked())
-			buscaritenspedido(txtcd_pedido.getText().toString());
-		else if(!cbConferir.isChecked())
-			buscarprodutos();
+		if(!txtcd_pedido.getText().toString().equals("")){
+			if(cbConferir.isChecked())
+				buscaritenspedido(txtcd_pedido.getText().toString());
+			else if(!cbConferir.isChecked())
+				buscarprodutos();
+		}
 	}
 
 	
@@ -301,7 +303,53 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 	public void salvaPedido(View view)
 	{
-		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); 
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		
+		Boolean flagvalida = true;
+		if (btcd_cli.getText().toString().equals("Cliente")) {
+			Toast.makeText(this, "Entre com o cliente!", Toast.LENGTH_SHORT)
+					.show();
+			flagvalida = false;
+		}
+
+		if (flagvalida) {
+			SQLiteDatabase db = helper.getWritableDatabase();	
+			
+			
+			// primeiro tem que verificar se ja foi inserido o registro do
+			// pedido
+			
+				ContentValues values = new ContentValues();
+				dt_lancamento = ConvertToDate(dia+"/"+(mes+1)+"/"+ano);
+				values.put("dt_lancamento", dt_lancamento.getTime());
+				values.put("vl_bruto", 0);
+				if(edt_desconto.getText().toString().equals("")){
+					values.put("vl_desconto", 0);			
+					edt_desconto.setText("0");
+				}
+				else
+				values.put("vl_desconto", edt_desconto.getText().toString().replace(",", "."));
+				values.put("vl_total", 0);
+				values.put("cd_cli", txtcd_cli.getText().toString());
+				values.put("ds_obs", txtds_obs.getText().toString());
+				values.put("ds_formapgto", spnds_formapgto.getSelectedItem().toString());
+				values.put("cd_tabelapreco", txtcd_tabelapreco.getText().toString());
+										
+				if (txtcd_pedido.getText().equals("")) {
+				long resultado = db.insert("pedido", null, values);
+				txtcd_pedido.setText(resultado+"");
+				} else db.update("pedido",  values, "_id ="+txtcd_pedido.getText().toString(),null);
+				
+				
+				
+//				btsalvaPedido.setVisibility(View.INVISIBLE);
+		
+			atualizavalorespedido(txtcd_pedido.getText().toString());
+			
+		}// fim if flagvalida
+		
+		
+		 
 		//se Conferir não estiver clicado então insere produtos no pedido
 		int x = listprd.getAdapter().getCount();
 		DecimalFormat df = new DecimalFormat(",##0.00");
@@ -396,49 +444,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				Log.i(LOG, "i="+i+" x="+x);
 			}
 		}
+		atualizavalorespedido(txtcd_pedido.getText().toString());
 		
-		Boolean flagvalida = true;
-		if (btcd_cli.getText().toString().equals("Cliente")) {
-			Toast.makeText(this, "Entre com o cliente!", Toast.LENGTH_SHORT)
-					.show();
-			flagvalida = false;
-		}
-
-		if (flagvalida) {
-			SQLiteDatabase db = helper.getWritableDatabase();	
-			
-			
-			// primeiro tem que verificar se ja foi inserido o registro do
-			// pedido
-			
-				ContentValues values = new ContentValues();
-				dt_lancamento = ConvertToDate(dia+"/"+(mes+1)+"/"+ano);
-				values.put("dt_lancamento", dt_lancamento.getTime());
-				values.put("vl_bruto", 0);
-				if(edt_desconto.getText().toString().equals("")){
-					values.put("vl_desconto", 0);			
-					edt_desconto.setText("0");
-				}
-				else
-				values.put("vl_desconto", edt_desconto.getText().toString().replace(",", "."));
-				values.put("vl_total", 0);
-				values.put("cd_cli", txtcd_cli.getText().toString());
-				values.put("ds_obs", txtds_obs.getText().toString());
-				values.put("ds_formapgto", spnds_formapgto.getSelectedItem().toString());
-				values.put("cd_tabelapreco", txtcd_tabelapreco.getText().toString());
-										
-				if (txtcd_pedido.getText().equals("")) {
-				long resultado = db.insert("pedido", null, values);
-				txtcd_pedido.setText(resultado+"");
-				} else db.update("pedido",  values, "_id ="+txtcd_pedido.getText().toString(),null);
-				
-				
-				
-//				btsalvaPedido.setVisibility(View.INVISIBLE);
-		
-			atualizavalorespedido(txtcd_pedido.getText().toString());
-			
-		}// fim if flagvalida
 	}
 
 	

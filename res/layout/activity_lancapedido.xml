@@ -305,37 +305,32 @@
                         android:layout_weight="2">
                         
                                 <TextView
-						            android:id="@+id/txtcd"
-						            android:layout_width="wrap_content"
-						            android:layout_height="wrap_content"
-						            android:layout_weight="0.07"
-						            android:text="Cód. Pedido: "
-						            android:textColor="@color/vermelho"
-						            android:textSize="@dimen/min_font"
-						            android:textStyle="bold" />
-						
-						        <TextView
-						            android:id="@+id/textView6"
-						            android:layout_width="wrap_content"
-						            android:layout_height="wrap_content"
-						            android:layout_alignParentTop="true"
-						            android:layout_marginLeft="70dp"
-						            android:layout_toRightOf="@+id/txtcd"
-						            android:text="Total R$: "
-						            android:textColor="@color/vermelho"
-						            android:textSize="@dimen/min_font"
-						            android:textStyle="bold" />
-						
-						        <TextView
-						            android:id="@+id/txtcd_pedido"
-						            android:layout_width="wrap_content"
-						            android:layout_height="wrap_content"
-						            android:layout_alignParentTop="true"
-						            android:layout_toRightOf="@+id/txtcd"
-						            android:layout_weight="0.07"
-						            android:textColor="@color/vermelho"
-						            android:textSize="@dimen/min_font"
-						            android:textStyle="bold" />
+                                    android:id="@+id/txtcd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cód. Pedido: "
+                                    android:textColor="@color/vermelho"
+                                    android:textSize="@dimen/min_font"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtcd_pedido"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/txtcd"
+                                    android:layout_weight="0.01"
+                                    android:textColor="@color/vermelho"
+                                    android:textSize="@dimen/min_font"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total R$: "
+                                    android:textColor="@color/vermelho"
+                                    android:textSize="@dimen/min_font"
+                                    android:textStyle="bold" />
 						
 						        <TextView
 						            android:id="@+id/txttt_pedido"
@@ -343,6 +338,7 @@
 						            android:layout_height="wrap_content"
 						            android:layout_alignParentTop="true"
 						            android:layout_toRightOf="@+id/textView6"
+						            android:layout_weight="0.01"
 						            android:text="0,00"
 						            android:textColor="@color/vermelho"
 						            android:textSize="@dimen/min_font"

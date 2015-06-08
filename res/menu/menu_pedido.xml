@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
         
-        <item android:id="@+id/editar_pedido" android:title="Editar Pedido"></item>
         <item android:id="@+id/remover_pedido" android:title="Remover Pedido"></item>
         <item android:id="@+id/enviar_xmlemail" android:title="Enviar E-Mail Pedido"></item>
-        <item android:id="@+id/editar_itenspedido" android:title="Editar Itens Pedido"></item>
+        <item android:id="@+id/editar_pedido" android:title="Editar Pedido"></item>
+        
+        
         
     </menu>
