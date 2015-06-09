@@ -1,19 +1,14 @@
 package com.consultoriasolucao.appsolucaosistemas;
 
-import java.text.DecimalFormat;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class DadosCliente extends Activity {
 

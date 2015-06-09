@@ -1,24 +1,14 @@
 package com.consultoriasolucao.appsolucaosistemas;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
-import android.view.View;
-import android.webkit.WebView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class DadosProduto extends Activity {
 
@@ -30,7 +20,6 @@ public class DadosProduto extends Activity {
 	private TextView txttabela3;
 	private TextView txttabela4;
 	private TextView txttabela5;
-    private ListView lista;
     
     
 	@Override
@@ -44,11 +33,11 @@ public class DadosProduto extends Activity {
 		TextView txtquant = (TextView) findViewById(R.id.txtquant);
 		
 		//puxando os valores da tabela caso existam
-		TextView txttabela1 = (TextView) findViewById(R.id.txttabela1);
-		TextView txttabela2 = (TextView) findViewById(R.id.txttabela2);
-		TextView txttabela3 = (TextView) findViewById(R.id.txttabela3);
-		TextView txttabela4 = (TextView) findViewById(R.id.txttabela4);
-		TextView txttabela5 = (TextView) findViewById(R.id.txttabela5);
+		txttabela1 = (TextView) findViewById(R.id.txttabela1);
+		txttabela2 = (TextView) findViewById(R.id.txttabela2);
+		txttabela3 = (TextView) findViewById(R.id.txttabela3);
+		txttabela4 = (TextView) findViewById(R.id.txttabela4);
+		txttabela5 = (TextView) findViewById(R.id.txttabela5);
 		
 		txttabela1.setText("");
 		txttabela2.setText("");
