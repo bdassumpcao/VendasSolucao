@@ -3,18 +3,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:fillViewport="true"
     android:background="@color/Layout" >
 	
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:orientation="vertical" >
         
-        <LinearLayout 
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="top">
+            android:orientation="vertical" 
+            android:baselineAligned="false">
             
             <TableLayout 
                 android:layout_width="match_parent"
@@ -238,15 +239,14 @@
                 </TableRow>
                 
                 <TableRow 
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="2">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
                     
                     <LinearLayout 
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
+                        android:layout_weight="2"
                         android:orientation="horizontal"
                         android:layout_gravity="left|center_horizontal">
 						
@@ -348,19 +348,19 @@
                     </LinearLayout>
                     
                 </TableRow>
-                
+
+
+                <ListView
+                    android:id="@+id/lst_produtos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants" >
+                </ListView>
             </TableLayout>
-            
+
         </LinearLayout>
-
-        <ListView
-            android:id="@+id/lst_produtos"
-            android:layout_width="match_parent"
-            android:layout_height="191dp"
-            android:layout_gravity="bottom"
-            android:descendantFocusability="beforeDescendants" >
-
-		</ListView>
         
-    </LinearLayout>
+        
+    </RelativeLayout>
 </ScrollView>

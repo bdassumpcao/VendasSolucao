@@ -74,16 +74,18 @@
 
             <requestFocus />
         </EditText>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="apagalocalizacao"
+        android:text="Apagar Localização" 
+        android:background="@drawable/button"/>
         
     <ListView
         android:id="@+id/listacoordenadas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
-<Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apagar Localização"
-            android:onClick="apagalocalizacao" />
 </LinearLayout>

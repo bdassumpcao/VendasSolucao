@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -20,7 +21,11 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,6 +33,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -81,6 +87,28 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		this.listprd = (ListView)findViewById(R.id.lst_produtos);
 		listprd.setItemsCanFocus(true);
 		registerForContextMenu(listprd);
+
+		listprd.setOnTouchListener(new ListView.OnTouchListener() {
+	        @Override
+	        public boolean onTouch(View v, MotionEvent event) {
+	            int action = event.getAction();
+	            switch (action) {
+	            case MotionEvent.ACTION_DOWN:
+	                // Disallow ScrollView to intercept touch events.
+	                v.getParent().requestDisallowInterceptTouchEvent(true);
+	                break;
+
+	            case MotionEvent.ACTION_UP:
+	                // Allow ScrollView to intercept touch events.
+	                v.getParent().requestDisallowInterceptTouchEvent(false);
+	                break;
+	            }
+
+	            // Handle ListView touch events.
+	            v.onTouchEvent(event);
+	            return true;
+	        }
+	    });
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.ds_formapgto,android.R.layout.simple_spinner_item);
 		spnds_formapgto = (Spinner) findViewById(R.id.spnds_formapgto);
@@ -190,7 +218,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			mapa.put("qt_prd", df.format(c.getDouble(3)) + "");
 			mapa.put("nm_prd", c.getString(2));
 			mapa.put("vl_vnd", df.format(c.getDouble(4)));
-			mapa.put("vl_total", "Total R$:\n" + df.format(c.getDouble(5)) + "\n");
+			mapa.put("vl_total", "Total R$:" + df.format(c.getDouble(5)) + "\n");
 			produtos.add(mapa);
 		}
 		c.close();
@@ -220,7 +248,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
+//				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
+				mapa.put("qt_prd", "");
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 				
@@ -249,7 +278,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				HashMap<String, String> mapa = new HashMap<String,String>();
 				mapa.put("cd_prd", c.getString(1).trim());
 				mapa.put("nm_prd", c.getString(2));
-				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
+//				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
+				mapa.put("qt_prd", "");
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 				edt_descricao.setText(c.getString(2));
@@ -383,7 +413,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					  codbarras = cursor.getString(0);
 				      cursor.close();
 					}
-					d.close();
+					
 					
 					ContentValues values = new ContentValues();
 					values.put("cd_pedido", txtcd_pedido.getText().toString());
@@ -393,7 +423,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					values.put("codbarras", codbarras);
 					SQLiteDatabase db = helper.getWritableDatabase();
 					db.insert("itenspedido", null, values);
-					db.close();
+					
 					Log.i(LOG, "\n INSERE y="+ y + " cd_prd=" + cd_Alterado[y] + " nm_prd=" + nm_Alterado[y] + " qt_prd= " + qt_Alterado[y] + " vl_vnd= " + vl_Alterado[y] );
 					buscarprodutos();
 					atualizavalorespedido(txtcd_pedido.getText().toString());
@@ -475,7 +505,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							  codbarras = cursor.getString(0);
 						      cursor.close();
 							}
-							d.close();
+							
 							
 							ContentValues values = new ContentValues();
 							values.put("cd_pedido", txtcd_pedido.getText().toString());
@@ -485,7 +515,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							values.put("codbarras", codbarras);
 							SQLiteDatabase db = helper.getWritableDatabase();
 							db.update("itenspedido", values, "_id ="+id_Alterado[y], null);
-							db.close();
+							
 							atualizavalorespedido(txtcd_pedido.getText().toString());
 							buscaritenspedido(txtcd_pedido.getText().toString());
 						}
@@ -508,7 +538,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 		double vl_total = c.getDouble(0) - Double.parseDouble(edt_desconto.getText().toString());
 		values.put("vl_total", vl_total);
 		db.update("pedido",  values, "_id ="+cd_pedido,null);
-		db.close();
+		
 		DecimalFormat df = new DecimalFormat(",##0.00");
 		txttt_pedido.setText(df.format(vl_total)+"");		
 	}
@@ -597,7 +627,30 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 
 	}
 	
-	
+//	/**** Method for Setting the Height of the ListView dynamically.
+//	 **** Hack to fix the issue of not showing all the items of the ListView
+//	 **** when placed inside a ScrollView  ****/
+//	public static void setListViewHeightBasedOnChildren(ListView listView) {
+//	    ListAdapter listAdapter = listView.getAdapter();
+//	    if (listAdapter == null)
+//	        return;
+//
+//	    int desiredWidth = MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.UNSPECIFIED);
+//	    int totalHeight = 0;
+//	    View view = null;
+//	    for (int i = 0; i < listAdapter.getCount(); i++) {
+//	        view = listAdapter.getView(i, view, listView);
+//	        if (i == 0)
+//	            view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, LayoutParams.WRAP_CONTENT));
+//
+//	        view.measure(desiredWidth, MeasureSpec.UNSPECIFIED);
+//	        totalHeight += view.getMeasuredHeight();
+//	    }
+//	    ViewGroup.LayoutParams params = listView.getLayoutParams();
+//	    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+//	    listView.setLayoutParams(params);
+//	    listView.requestLayout();
+//	}
 
 
 }

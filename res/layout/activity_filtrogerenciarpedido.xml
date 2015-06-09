@@ -97,13 +97,14 @@
 
     
 
-    <ImageView
+    <Button
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="buscarRelat"
-        android:background="@drawable/buttonbusca" />
+        android:text="@string/buscar"
+        android:background="@drawable/button" />
     
      <TextView
         android:id="@+id/textView4"
