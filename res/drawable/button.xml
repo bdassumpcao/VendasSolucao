@@ -19,7 +19,7 @@
     <item>
             <shape 
                 android:shape="rectangle" >
-                <gradient android:startColor="@color/PRATA" android:endColor="@color/branco"/>
+                <gradient android:startColor="@color/PRATA" android:endColor="@color/cinzaclaro"/>
                 
                 <stroke
                     android:width="1dp"
