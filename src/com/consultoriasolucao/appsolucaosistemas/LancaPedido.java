@@ -209,6 +209,8 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	
 	private ArrayList<HashMap<String, String>> buscarProdutos(String nome) {
 		// buscar todos os produtos do banco
+		SQLiteDatabase db = helper.getReadableDatabase();
+		String cd_tabelapreco = txtcd_tabelapreco.getText().toString();
 		if (edt_id.getText().toString().equals("")) //caso não seja consulta por código
 		{
 			Cursor c = helper.getReadableDatabase().rawQuery("select _id,  cd_prd, nm_prd, vl_vnd,rf_prd,qt_prd  from produto where nm_prd like '%"+nome+"%' ORDER BY nm_prd ", null);
@@ -221,10 +223,21 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				mapa.put("qt_prd", df.format(Double.parseDouble("0.00"))+"");
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
+				
+				//puxando as tabelas de preço				
+				Cursor cursor1 = db.rawQuery("SELECT _id, vl_vnd from tabelaprecoprd where cd_prd ="+ c.getString(1).trim() +" and cd_tabelapreco="+cd_tabelapreco, null);		
+				if (cursor1.getCount() !=0){
+					while (cursor1.moveToNext()) 
+					{
+						mapa.put("vl_vnd", df.format(cursor1.getDouble(1))+"");
+					}
+					
+				}
+				cursor1.close();
 				produtos.add(mapa);
 			}
+			
 			c.close();
-			helper.close();
 			// construir objeto de retorno que é uma String[]
 			return produtos;
 		}else
@@ -240,10 +253,20 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				mapa.put("vl_vnd", df.format(c.getDouble(3))+"");
 				mapa.put("vl_total", "");
 				edt_descricao.setText(c.getString(2));
+				
+				//puxando as tabelas de preço				
+				Cursor cursor1 = db.rawQuery("SELECT _id, vl_vnd from tabelaprecoprd where cd_prd ="+ c.getString(1).trim() +" and cd_tabelapreco="+cd_tabelapreco, null);		
+				if (cursor1.getCount() !=0){
+					while (cursor1.moveToNext()) 
+					{
+						mapa.put("vl_vnd", df.format(cursor1.getDouble(1))+"");
+					}
+					
+				}
+				cursor1.close();
 				produtos.add(mapa);
 			}
 			c.close();
-			helper.close();
 			// construir objeto de retorno que é uma String[]
 			return produtos;
 		}
@@ -258,9 +281,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 	
 	public void buscarprodutos(View view) {
 		if(!cbConferir.isChecked()){
+			salvaPedido(view);
 			adapter = new CustomAdapter(this, R.layout.listview_produtospedido, buscarProdutos(edt_descricao.getText().toString()));
 			listprd.setAdapter(adapter);
 		}
+		else
+			buscaritenspedido(txtcd_pedido.getText().toString());
 	}
 	
 

@@ -249,7 +249,7 @@ public class BackgroundService extends Service {
 		long data = System.currentTimeMillis();
 		String titulo = usuario + " ";
 		Context context = getApplicationContext();
-		Intent intent = new Intent(context, SolucaoSistemas.class);
+		Intent intent = new Intent(context, TransacoesOn.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, id,
 				intent, Intent.FLAG_ACTIVITY_NEW_TASK);
 
