@@ -1,6 +1,5 @@
 package com.consultoriasolucao.appsolucaosistemas;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,11 +17,10 @@ import android.widget.TextView;
 public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 {
 	private final static String LOG = "vendas";
-    ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
-    Context context;
-    int layoutResourceId;
-//    public TextView cd_prd, nm_prd, vl_total;
-//    public EditText qt_prd, vl_vnd;
+    private ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+    @SuppressWarnings("unused")
+	private Context context;
+    private int layoutResourceId;
     private LayoutInflater mInflater;
     private static ArrayList<HashMap<String, String>> produtos;
 
@@ -32,6 +30,7 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
         this.list=list;
         this.context=context;
         this.layoutResourceId=layoutResourceId;
+        Log.i(LOG, "CustomAdapter()");
         produtos = list;
 
     }
@@ -85,9 +84,9 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 				@Override
 				public void onFocusChange(View v, boolean hasFocus) {
 					// TODO Auto-generated method stub
-					if(hasFocus)
-						setProdutos(holder, v, position);				
-
+					if(hasFocus){
+						setProdutos(holder, v, position);	
+					}
 				}
 			});
 	        
@@ -96,9 +95,9 @@ public class CustomAdapter extends ArrayAdapter<HashMap<String, String>>
 				@Override
 				public void onFocusChange(View v, boolean hasFocus) {
 					// TODO Auto-generated method stub
-					if(hasFocus)
-						setProdutos(holder, v, position);				
-
+					if(hasFocus){
+						setProdutos(holder, v, position);	
+					}
 				}
 			});
         }

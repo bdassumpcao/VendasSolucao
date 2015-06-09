@@ -106,7 +106,7 @@ public class FiltroGerenciarPedido extends Activity {
 		filtro =btdtini.getText().toString()+"|"+btdtfim.getText().toString()+"|"+edtcd_cli.getText().toString()+"|";
 		
 		Intent intent = new Intent(this, GerenciarPedido.class);
-		intent.putExtra(RelatorioFinanceiro.EXTRA_NOME_USUARIO, filtro);
+		intent.putExtra(GerenciarPedido.EXTRA_NOME_USUARIO, filtro);
 		startActivity(intent);
 	}
 	

@@ -89,19 +89,10 @@ public class ConsultaProduto extends Activity implements OnItemClickListener {
 		this.saudacaoTextView = (TextView) findViewById(R.id.txtcodprod);
 		this.saudacaoTextView.setText(item.get("cd_prd"));
 
-		
-		if (getIntent().hasExtra(LancaItensPedido.EXTRA_CD_PRD)) //caso a tela de consulta foi chamada pela tela de lançamento de pedido
-		{		
-			Intent intent = new Intent(this, DadosProduto.class);
-			intent.putExtra(LancaItensPedido.EXTRA_CD_PRD, item.get("cd_prd").toString());
-			setResult(RESULT_OK, intent);
-			finish();
-		}else
-		{
-	    	Intent intent = new Intent(this, DadosProduto.class);
+		   	Intent intent = new Intent(this, DadosProduto.class);
 		    intent.putExtra(DadosProduto.EXTRA_NOME_USUARIO, item.get("cd_prd"));
 	    	startActivity(intent);
-		}
+		
 	}
 
 }

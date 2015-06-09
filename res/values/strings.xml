@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
 <resources>
 
     <string name="app_name">TesteVendasSolucao</string>
@@ -7,6 +8,11 @@
     <string name="erro_salvar">Erro ao salvar</string>
     <string name="sitaucaopago">Pago</string>
     <string name="situacaoavencer">A vencer</string>
+    <string name="buscar">Buscar</string>
+    
+    <string name="menu_pedido_Remover">Remover Pedido</string>
+    <string name="menu_pedido_email">Enviar E-Mail Pedido</string>
+    <string name="menu_pedido_editar">Editar Pedido</string>
 
     <string-array name="ds_stiuacaotitulo">
 <item>TODOS</item>

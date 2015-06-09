@@ -14,7 +14,7 @@ public class SolucaoSistemas extends Activity {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_solucao_sistemas);
 		startService(new  Intent(this, BackgroundService.class));
-		startActivity(new Intent(this, FinancasPessoais.class));
+		
 	}
 	
 //	public void abrirSuporte(View view){

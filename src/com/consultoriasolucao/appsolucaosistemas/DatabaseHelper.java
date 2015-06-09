@@ -26,11 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		db.execSQL("CREATE TABLE cliente (_id INTEGER PRIMARY KEY, cd_cli INTEGER, nm_cli TEXT, nr_tel TEXT, nr_fax TEXT, nr_cel TEXT, nm_rua TEXT, nm_rzascl TEXT, nr_cpfcnpj TEXT, nr_rgie TEXT, nm_cpm TEXT, nr_cep TEXT, ds_obs TEXT, ds_email TEXT, nm_brr TEXT, ds_complemento TEXT);");
 		
-		db.execSQL("CREATE TABLE financas (_id INTEGER PRIMARY KEY, ds_historico TEXT, vl_despesa DOUBLE, vl_receita DOUBLE, ds_tipo TEXT, dt_lancamento DATE); ");
-		db.execSQL("CREATE TABLE categoria (_id INTEGER PRIMARY KEY, ds_categoria TEXT);");
-		db.execSQL("ALTER TABLE financas ADD cd_categoria INTEGER ");		
-	    db.execSQL("ALTER TABLE financas ADD ds_situacao TEXT");
-	    db.execSQL("ALTER TABLE financas ADD  dt_vencimento DATE ");
 	    db.execSQL("ALTER TABLE cliente ADD cd_uf TEXT"); 
 	    db.execSQL("CREATE TABLE coordenadagps (_id INTEGER, dt_lancamento DATE, hr_lancamento DOUBLE,  ds_usuario TEXT); ");
 		db.execSQL("ALTER TABLE licenca ADD ds_usuario TEXT"); 
