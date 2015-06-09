@@ -3,29 +3,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/Layout" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome do Cliente"
-        />
+        android:textSize="@dimen/font"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/edtnmcliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:background="@drawable/edittext" >
 
         <requestFocus />
     </EditText>
 
-    <ImageView
+    <Button
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/buttonbusca" 
+        android:background="@drawable/buttonbusca" 
         android:onClick="buscarcliente"
         android:layout_gravity="center"
         android:contentDescription="@string/buscar"/>

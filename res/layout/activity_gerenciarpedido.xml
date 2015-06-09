@@ -3,18 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-
-            
-           
+    android:orientation="vertical"
+    android:background="@color/Layout" >
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
-
-               
 
                 <TableRow
                     android:id="@+id/tableRow3"
@@ -25,6 +19,8 @@
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
 	                        android:layout_weight="0.01"
+	                        android:textSize="@dimen/font"
+	                        android:textStyle="bold"
 	                        android:text="Total Pedido " />
 	
 	                    <TextView
@@ -32,6 +28,8 @@
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
 	                        android:text="0,00"
+	                        android:textSize="@dimen/font"
+	                        android:textStyle="bold"
 	                        android:textColor="@color/vermelho"
 	                        android:layout_weight="0.5" />
 
@@ -40,12 +38,16 @@
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
 	                        android:layout_weight="0.01"
+	                        android:textSize="@dimen/font"
+	                        android:textStyle="bold"
 	                        android:text="Quant: " />
 
 	                    <TextView
 	                        android:id="@+id/txttt_qtpedido"
 	                        android:layout_width="wrap_content"
 	                        android:layout_height="wrap_content"
+	                        android:textSize="@dimen/font"
+	                        android:textStyle="bold"
 	                        android:layout_x="104dp"
 	                        android:layout_y="0dp"
 	                        android:text="0,00"
@@ -62,6 +64,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_weight="0.5"
+                  android:background="@drawable/button"
                   android:onClick="inserirPedido"
                   android:text="Novo Pedido" />
 
@@ -70,6 +73,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_weight="0.5"
+                  android:background="@drawable/button"
                   android:onClick="atualizaLista"
                   android:text="Localizar Pedido" />
 

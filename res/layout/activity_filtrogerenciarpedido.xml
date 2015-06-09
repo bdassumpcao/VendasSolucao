@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:background="@color/Layout">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Período"
+                android:textSize="@dimen/font"
                 android:textStyle="bold" />
         </TableRow>
 
@@ -36,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="selecionarDataini"
                 android:layout_weight="0.3"
+                android:background="@drawable/button"
                 android:text="" />
 
             <TextView
@@ -48,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="selecionarDatafim"
+                android:background="@drawable/button"
                  android:layout_weight="0.3"
                 android:text="" />
         </TableRow>
@@ -79,6 +82,7 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:text="Cliente"
+             android:background="@drawable/button"
              android:onClick="consultaCliente" />
 
          
@@ -99,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="buscarRelat"
-        android:src="@drawable/buscar" />
+        android:background="@drawable/buttonbusca" />
     
      <TextView
         android:id="@+id/textView4"

@@ -3,14 +3,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/Layout" >
 
     <Button
         android:id="@+id/bt_buscaproduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="veririficalocalizacao"
-        android:text="Atualizar Localizacao" />
+        android:text="Atualizar Localizacao" 
+        android:background="@drawable/button"/>
     
     
 
@@ -24,13 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Latitude: "
-            android:textStyle="bold" />
+            android:textStyle="bold" 
+            android:textSize="@dimen/font"/>
 
         <TextView
             android:id="@+id/txtvl_latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="0" 
+            android:textSize="@dimen/font"
+        	android:textStyle="bold"/>
 
         
 
@@ -46,22 +51,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Longitude: "
+            android:textSize="@dimen/font"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtvl_longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="0"
+            android:textSize="@dimen/font"
+            android:textStyle="bold"/>
 
         
 
     </TableRow>
+
     <EditText
-            android:id="@+id/txtcoordenadas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10" >
+        android:id="@+id/txtcoordenadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext" >
 
             <requestFocus />
         </EditText>
