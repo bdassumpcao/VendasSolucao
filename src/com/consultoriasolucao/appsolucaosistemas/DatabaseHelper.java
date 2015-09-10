@@ -32,12 +32,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("ALTER TABLE licenca ADD ds_email TEXT"); 
 		db.execSQL("ALTER TABLE coordenadagps ADD vl_latitudec TEXT");
 		db.execSQL("ALTER TABLE coordenadagps ADD  vl_longitudec TEXT");
-		db.execSQL("ALTER TABLE produto ADD  codbarras TEXT");
 		
 //		if (oldVersion <7) 
 			//{
 				 db.execSQL("CREATE TABLE pedido (_id INTEGER, dt_lancamento DATE, vl_bruto DOUBLE, vl_desconto DOUBLE, vl_total DOUBLE,cd_cli integer); ");
-			      db.execSQL("CREATE TABLE itenspedido (_id INTEGER, cd_pedido INTEGER, cd_prd INTEGER, qt_iten DOUBLE, vl_iten DOUBLE, codbarras TEXT); ");
+			      db.execSQL("CREATE TABLE itenspedido (_id INTEGER, cd_pedido INTEGER, cd_prd INTEGER, qt_iten DOUBLE, vl_iten DOUBLE); ");
 		//	}
 			
 			//if (oldVersion <13) 
@@ -51,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			  db.execSQL("DROP TABLE pedido;");
 			  db.execSQL("DROP TABLE itenspedido;");
 		  	  db.execSQL("CREATE TABLE pedido (_id INTEGER PRIMARY KEY, dt_lancamento DATE, vl_bruto DOUBLE, vl_desconto DOUBLE, vl_total DOUBLE,cd_cli integer, DS_OBS TEXT); ");
-		      db.execSQL("CREATE TABLE itenspedido (_id INTEGER PRIMARY KEY, cd_pedido INTEGER, cd_prd INTEGER, qt_iten DOUBLE, vl_iten DOUBLE, codbarras TEXT); ");
+		      db.execSQL("CREATE TABLE itenspedido (_id INTEGER PRIMARY KEY, cd_pedido INTEGER, cd_prd INTEGER, qt_iten DOUBLE, vl_iten DOUBLE); ");
 			//}
 		    
 		      //if (oldVersion <16)

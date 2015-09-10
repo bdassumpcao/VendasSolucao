@@ -17,15 +17,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.MeasureSpec;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,7 +27,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -403,16 +396,16 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 			
 			for(int y=0; y<cd_Alterado.length; y++){
 				if(cd_Alterado[y] != null){
-					String codbarras="";
-					SQLiteDatabase d = helper.getReadableDatabase();
-					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_Alterado[y], null);
-					cursor.moveToNext();
-					
-					if (cursor.getCount() !=0)
-					{		
-					  codbarras = cursor.getString(0);
-				      cursor.close();
-					}
+//					String codbarras="";
+//					SQLiteDatabase d = helper.getReadableDatabase();
+//					Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_Alterado[y], null);
+//					cursor.moveToNext();
+//					
+//					if (cursor.getCount() !=0)
+//					{		
+//					  codbarras = cursor.getString(0);
+//				      cursor.close();
+//					}
 					
 					
 					ContentValues values = new ContentValues();
@@ -420,7 +413,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 					values.put("cd_prd", cd_Alterado[y]);
 					values.put("qt_iten", qt_Alterado[y].replace(",", "."));
 					values.put("vl_iten", vl_Alterado[y].replace(",", "."));
-					values.put("codbarras", codbarras);
+//					values.put("codbarras", codbarras);
 					SQLiteDatabase db = helper.getWritableDatabase();
 					db.insert("itenspedido", null, values);
 					
@@ -495,16 +488,16 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							atualizavalorespedido(txtcd_pedido.getText().toString());
 						}
 						else{
-							String codbarras="";
-							SQLiteDatabase d = helper.getReadableDatabase();
-							Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_Alterado[y], null);
-							cursor.moveToNext();
-							
-							if (cursor.getCount() !=0)
-							{		
-							  codbarras = cursor.getString(0);
-						      cursor.close();
-							}
+//							String codbarras="";
+//							SQLiteDatabase d = helper.getReadableDatabase();
+//							Cursor cursor = d.rawQuery("SELECT codbarras FROM produto where cd_prd="+cd_Alterado[y], null);
+//							cursor.moveToNext();
+//							
+//							if (cursor.getCount() !=0)
+//							{		
+//							  codbarras = cursor.getString(0);
+//						      cursor.close();
+//							}
 							
 							
 							ContentValues values = new ContentValues();
@@ -512,7 +505,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 							values.put("cd_prd", cd_Alterado[y]);
 							values.put("qt_iten", qt_Alterado[y].replace(",", "."));
 							values.put("vl_iten", vl_Alterado[y].replace(",", "."));
-							values.put("codbarras", codbarras);
+//							values.put("codbarras", codbarras);
 							SQLiteDatabase db = helper.getWritableDatabase();
 							db.update("itenspedido", values, "_id ="+id_Alterado[y], null);
 							

@@ -3,11 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/branco">
+    android:layout_margin="2dp"
+    android:background="@color/branco"
+    android:orientation="vertical" >
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TableRow
@@ -32,8 +33,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descrição: "
-                 />
+                android:text="Descrição: " />
 
             <TextView
                 android:id="@+id/txtdescricao"
@@ -94,54 +94,48 @@
                 android:textColor="@color/categoria_hospedagem" />
         </TableRow>
     </TableLayout>
-    
+
     <TextView
-                android:id="@+id/txtquan111t"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                />
-        
-     <TextView
-                android:id="@+id/txtquan1111t"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tabela de preços"
-                android:textColor="@color/categoria_hospedagem" />
-        
-        
-        <TextView
-                android:id="@+id/txttabela1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código: "            />
-        
-        <TextView
-                android:id="@+id/txttabela2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código: "
-                 />
-        
-        <TextView
-                android:id="@+id/txttabela3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código: "
-                 />
-        
-        <TextView
-                android:id="@+id/txttabela4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código: "
-                 />
-        
-        <TextView
-                android:id="@+id/txttabela5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Código: "
-                 />
+        android:id="@+id/txtquan111t"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/txtquan1111t"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tabela de preços"
+        android:textColor="@color/categoria_hospedagem" />
+
+    <TextView
+        android:id="@+id/txttabela1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigo_espaco" />
+
+    <TextView
+        android:id="@+id/txttabela2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigo_espaco" />
+
+    <TextView
+        android:id="@+id/txttabela3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigo_espaco" />
+
+    <TextView
+        android:id="@+id/txttabela4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigo_espaco" />
+
+    <TextView
+        android:id="@+id/txttabela5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigo_espaco" />
 
 </LinearLayout>

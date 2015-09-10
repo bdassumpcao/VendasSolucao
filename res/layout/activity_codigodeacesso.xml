@@ -3,22 +3,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/branco">
+    android:layout_margin="2dp"
+    android:background="@color/branco"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/font"
         android:text="Insira o Código de Acesso"
+        android:textSize="@dimen/font"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edtcodigoacesso"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext" >
+        android:layout_height="wrap_content" >
 
         <requestFocus />
     </EditText>
@@ -27,32 +27,30 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Insira o nome do usuário"
         android:textSize="@dimen/font"
-        android:textStyle="bold"
-        android:text="Insira o nome do usuário" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/txtnm_usuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext" >
+        android:layout_height="wrap_content" >
 
         <requestFocus />
     </EditText>
-    
-        <TextView
+
+    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Insira o E-mail da loja"
         android:textSize="@dimen/font"
-        android:textStyle="bold"
-        android:text="Insira o E-mail da loja" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/txtnm_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext" >
+        android:layout_height="wrap_content" >
 
         <requestFocus />
     </EditText>
@@ -61,33 +59,33 @@
         android:id="@+id/cbConferir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Gerenciar Localizacao"
         android:textSize="@dimen/font"
-        android:textStyle="bold"
-        android:text="Gerenciar Localizacao" />
-    
+        android:textStyle="bold" />
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-    <AbsoluteLayout >
+        <AbsoluteLayout>
 
-    <Button
-        android:id="@+id/bt_buscaproduto"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:onClick="InserirCodigo"
-        android:background="@drawable/button"
-        android:text="Inserir Código" />
+            <Button
+                android:id="@+id/bt_buscaproduto"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:onClick="InserirCodigo"
+                android:text="Inserir Código" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="160dp"
-        android:background="@drawable/button"
-        android:onClick="VerificaCodigo"
-        android:text="Verificar Código" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="160dp"
+                android:background="@drawable/button"
+                android:onClick="VerificaCodigo"
+                android:text="Verificar Código" />
+        </AbsoluteLayout>
+    </TableRow>
 
-    </AbsoluteLayout>
-	</TableRow>
 </LinearLayout>

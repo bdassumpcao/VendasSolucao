@@ -9,32 +9,30 @@
     <string name="sitaucaopago">Pago</string>
     <string name="situacaoavencer">A vencer</string>
     <string name="buscar">Buscar</string>
-    
+    <string name="codigo_espaco">Código: </string>
     <string name="menu_pedido_Remover">Remover Pedido</string>
     <string name="menu_pedido_email">Enviar E-Mail Pedido</string>
     <string name="menu_pedido_editar">Editar Pedido</string>
 
     <string-array name="ds_stiuacaotitulo">
-<item>TODOS</item>
- <item>Pagos</item>
- <item>A Vencer</item> 
- </string-array>
- 
+        <item>TODOS</item>
+        <item>Pagos</item>
+        <item>A Vencer</item>
+    </string-array>
     <string-array name="ds_tiporeceitadesp">
-<item>TODOS</item>
- <item>Receita</item>
- <item>Despesa</item> 
- </string-array>
- 
-     <string-array name="ds_formapgto">
-<item>SELECIONE</item>
- <item>A VISTA</item>
- <item>BOLETO</item>
- <item>CARTEIRA</item>
- <item>CHEQUE</item>
- <item>CARTAO</item>
- <item>DEPOSITO EM CONTA</item>
- <item>OUTROS</item> 
- </string-array>
+        <item>TODOS</item>
+        <item>Receita</item>
+        <item>Despesa</item>
+    </string-array>
+    <string-array name="ds_formapgto">
+        <item>SELECIONE</item>
+        <item>A VISTA</item>
+        <item>BOLETO</item>
+        <item>CARTEIRA</item>
+        <item>CHEQUE</item>
+        <item>CARTAO</item>
+        <item>DEPOSITO EM CONTA</item>
+        <item>OUTROS</item>
+    </string-array>
 
 </resources>

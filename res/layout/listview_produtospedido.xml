@@ -5,70 +5,68 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill_vertical"
     android:orientation="vertical" >
-    
-   <LinearLayout 
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="horizontal"
-       android:background="@color/categoria_outros">
-       
-       <TextView 
-           android:id="@+id/textview_codigo"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Código:"
-           android:textStyle="bold"/>
-       
-       <TextView 
-           android:id="@+id/txt_cdprd"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_weight="0.50"/>
-       
-   </LinearLayout>
-   
-   <TextView 
-       android:id="@+id/txt_nmprd"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
-   
-   <LinearLayout 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal">
-       
-       <TextView 
-           android:id="@+id/txt_quant"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Quant..:"/>
-       
-       <EditText
-           android:id="@+id/edt_quant"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:inputType="number"
-           android:text="        "
-           android:textStyle="bold" />
-       
-       <TextView
-           android:id="@+id/txt_valorunit" 
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Vr.Unit:"/>
-       
-       <EditText
-           android:id="@+id/edt_valorunt"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:inputType="number"
-           android:textStyle="bold" />
-       
-       <TextView
-           android:id="@+id/txt_valortotal" 
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"/>
-       
-   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/categoria_outros"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textview_codigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_cdprd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_nmprd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/txt_quant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quant..:" />
+
+        <EditText
+            android:id="@+id/edt_quant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="        "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_valorunit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vr.Unit:" />
+
+        <EditText
+            android:id="@+id/edt_valorunt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_valortotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>

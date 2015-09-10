@@ -3,352 +3,334 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:background="@color/branco" >
-	
+    android:layout_margin="2dp"
+    android:background="@color/branco"
+    android:fillViewport="true" >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" 
-            android:baselineAligned="false">
-            
-            <TableLayout 
+            android:baselineAligned="false"
+            android:orientation="vertical" >
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                
-                <TableRow 
+                android:layout_height="match_parent" >
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    
-                    <LinearLayout 
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="2"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal" >
 
-                            <EditText
-                                android:id="@+id/txtcd_cli"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-								android:src="@drawable/edittext"
-                                android:layout_gravity="left"
-                                android:inputType="numberDecimal" 
-                                android:textSize="@dimen/font"/>
-						    
-						    <Button
-						        android:id="@+id/btcd_cli"
-						        android:layout_width="match_parent"
-						        android:layout_height="match_parent"
-								android:background="@drawable/button"
-						        android:layout_gravity="right"
-						        android:onClick="consultaCliente"
-						        android:text="Cliente"
-						        android:textSize="@dimen/font" />
+                        <EditText
+                            android:id="@+id/txtcd_cli"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:inputType="numberDecimal"
+                            android:textSize="@dimen/font" />
 
-                    </LinearLayout>    
-                    
+                        <Button
+                            android:id="@+id/btcd_cli"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:background="@drawable/button"
+                            android:onClick="consultaCliente"
+                            android:text="Cliente"
+                            android:textSize="@dimen/font" />
+                    </LinearLayout>
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    
+                    android:layout_height="wrap_content" >
+
                     <TextView
-			            android:id="@+id/textView2"
-			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
-			            android:text="Observações: "
-			            android:textSize="@dimen/font"
-			            android:textStyle="bold" />
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Observações: "
+                        android:textSize="@dimen/font"
+                        android:textStyle="bold" />
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    
+                    android:layout_height="wrap_content" >
+
                     <EditText
-				     android:id="@+id/txtds_obs"
-				     android:layout_width="match_parent"
-				     android:layout_height="wrap_content"
-				     android:layout_weight="1"
-				     android:textSize="@dimen/font"
-				     android:background="@drawable/edittext"
-				     android:text="" />
-                    
+                        android:id="@+id/txtds_obs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="@dimen/font" />
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-					
-                    <LinearLayout 
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="2"
-                        android:orientation="horizontal">
-						
+                        android:orientation="horizontal" >
+
                         <TextView
-					        android:id="@+id/textView3"
-					        android:layout_width="wrap_content"
-					        android:layout_height="wrap_content"
-					        android:layout_weight="5"
-					        android:textSize="@dimen/font"
-					        android:layout_gravity="left|center_horizontal"
-					        android:text="Forma de Pagamento "
-					        android:textStyle="bold" />
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_weight="5"
+                            android:text="Forma de Pagamento "
+                            android:textSize="@dimen/font"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/font"
                             android:layout_gravity="right|center_horizontal"
+                            android:layout_weight="1"
                             android:text="Tabela"
+                            android:textSize="@dimen/font"
                             android:textStyle="bold" />
-						
-					</LinearLayout>
-                    
+                    </LinearLayout>
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    
-                    <LinearLayout 
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:layout_weight="2"
-                        android:orientation="horizontal">
-                        
+                        android:orientation="horizontal" >
+
                         <Spinner
-				    	    android:id="@+id/spnds_formapgto"
-				    	    android:layout_width="wrap_content"
-				    	    android:layout_height="wrap_content" 
-				    	    android:layout_weight="2"
-				    	    android:spinnerMode="dialog"
-				    	    android:layout_gravity="left|center_horizontal"
-				    	    android:textSize="@dimen/font"/>
-				
-					    <EditText
-					        android:id="@+id/edtcd_tabelapreco"
-					        android:layout_width="wrap_content"
-					        android:layout_height="match_parent"
-					        android:layout_weight="0.1"
-					        android:inputType="numberDecimal"
-					        android:textSize="@dimen/font"
-					        android:layout_gravity="right|center_horizontal"
-					        android:text="1" >
+                            android:id="@+id/spnds_formapgto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_weight="2"
+                            android:spinnerMode="dialog"
+                            android:textSize="@dimen/font" />
 
-					        <requestFocus
-					            android:layout_width="wrap_content"
-					            android:layout_height="wrap_content" />
+                        <EditText
+                            android:id="@+id/edtcd_tabelapreco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right|center_horizontal"
+                            android:layout_weight="0.1"
+                            android:inputType="numberDecimal"
+                            android:text="1"
+                            android:textSize="@dimen/font" >
 
-					    </EditText>
-                        
+                            <requestFocus
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </EditText>
                     </LinearLayout>
-                    
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    
-                    <LinearLayout 
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:orientation="horizontal">
-                        
+                        android:orientation="horizontal" >
+
                         <TextView
-					        android:id="@+id/textView7"
-					        android:layout_width="wrap_content"
-					        android:layout_height="wrap_content"
-					        android:layout_weight="2"
-					        android:layout_gravity="left|center_horizontal"
-					        android:text="Filtro da busca"
-					        android:textStyle="bold" 
-					        android:textSize="@dimen/font"/>
-					
-					    <TextView
-					        android:id="@+id/textView8"
-					        android:layout_width="wrap_content"
-					        android:layout_height="wrap_content"
-							android:layout_weight="0.1"
-							android:layout_gravity="right|center_horizontal"
-					        android:text="Desc."
-					        android:textStyle="bold"
-					        android:textSize="@dimen/font" />
-                        
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_weight="2"
+                            android:text="Filtro da busca"
+                            android:textSize="@dimen/font"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_horizontal"
+                            android:layout_weight="0.1"
+                            android:text="Desc."
+                            android:textSize="@dimen/font"
+                            android:textStyle="bold" />
                     </LinearLayout>
-                    
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-                    
-                    <LinearLayout 
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="2">
-                        
-                              	    <EditText
-						      	        android:id="@+id/edt_id"
-						      	        android:layout_width="wrap_content"
-						      	        android:layout_height="wrap_content"
-						      	        android:layout_gravity="left|center_horizontal"
-						      	        android:layout_weight="0.1"
-						      	        android:textSize="@dimen/font"
-						      	        android:inputType="numberDecimal" >
-						      	    </EditText>
-						
-						      	    <EditText
-						      	        android:id="@+id/edt_descricao"
-						      	        android:layout_width="wrap_content"
-						      	        android:layout_height="wrap_content"
-						      	        android:layout_gravity="center|center_horizontal"
-						      	        android:layout_weight="1.5"
-						      	        android:textSize="@dimen/font"
-						      	        android:inputType="text" >
-						      	    </EditText>
-						      	    
-						      	    <EditText
-						      	        android:id="@+id/edt_desconto"
-						      	        android:layout_width="wrap_content"
-						      	        android:layout_height="wrap_content"
-						      	        android:layout_gravity="right|center_horizontal"
-										android:layout_weight="0.1"
-										android:textSize="@dimen/font"
-						      	        android:inputType="number" >
-					        		</EditText>
-                        
-                    </LinearLayout>
-                    
-                </TableRow>
-                
-                <TableRow 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    
-                    <LinearLayout 
+                    android:layout_gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:orientation="horizontal"
-                        android:layout_gravity="left|center_horizontal">
-						
+                        android:orientation="horizontal" >
+
+                        <EditText
+                            android:id="@+id/edt_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_horizontal"
+                            android:layout_weight="0.1"
+                            android:inputType="numberDecimal"
+                            android:textSize="@dimen/font" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/edt_descricao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_horizontal"
+                            android:layout_weight="1.5"
+                            android:inputType="text"
+                            android:textSize="@dimen/font" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/edt_desconto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_horizontal"
+                            android:layout_weight="0.1"
+                            android:inputType="number"
+                            android:textSize="@dimen/font" >
+                        </EditText>
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center_horizontal"
+                        android:layout_weight="2"
+                        android:orientation="horizontal" >
+
                         <CheckBox
                             android:id="@+id/cbConferir"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
                             android:onClick="Conferir"
                             android:text="Conferir"
                             android:textSize="@dimen/font"
                             android:textStyle="bold" />
-                        
+
                         <Button
-			               android:id="@+id/bt_buscaproduto"
-			               android:layout_width="wrap_content"
-			               android:layout_height="wrap_content"
-			               android:background="@drawable/button"
-			               android:layout_weight="1"
-			               android:onClick="buscarprodutos"
-			               android:text="Busca"
-			               android:textSize="@dimen/font" />
-			
-			           <Button
-			               android:id="@+id/btsalvapedido"
-			               android:layout_width="wrap_content"
-			               android:layout_height="wrap_content"
-			               android:layout_weight="1"
-			               android:background="@drawable/button"
-			               android:onClick="salvaPedido"
-			               android:text="Salva"
-			               android:textSize="@dimen/font" />
-			
-			           <Button
-			               android:id="@+id/bt_sair"
-			               android:layout_width="wrap_content"
-			               android:layout_height="wrap_content"
-			               android:layout_weight="1"
-			               android:background="@drawable/button"
-			               android:onClick="Sair"
-			               android:text="Sair"
-			               android:textSize="@dimen/font" />
-                        
+                            android:id="@+id/bt_buscaproduto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/button"
+                            android:onClick="buscarprodutos"
+                            android:text="Busca"
+                            android:textSize="@dimen/font" />
+
+                        <Button
+                            android:id="@+id/btsalvapedido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/button"
+                            android:onClick="salvaPedido"
+                            android:text="Salva"
+                            android:textSize="@dimen/font" />
+
+                        <Button
+                            android:id="@+id/bt_sair"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/button"
+                            android:onClick="Sair"
+                            android:text="Sair"
+                            android:textSize="@dimen/font" />
                     </LinearLayout>
-                    
                 </TableRow>
-                
-                <TableRow 
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-                    
-                    <LinearLayout 
+                    android:layout_gravity="center_horizontal" >
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2">
-                        
-                                <TextView
-                                    android:id="@+id/txtcd"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Cód. Pedido: "
-                                    android:textColor="@color/vermelho"
-                                    android:textSize="@dimen/min_font"
-                                    android:textStyle="bold" />
+                        android:layout_weight="2" >
 
-                                <TextView
-                                    android:id="@+id/txtcd_pedido"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_toRightOf="@+id/txtcd"
-                                    android:layout_weight="0.01"
-                                    android:textColor="@color/vermelho"
-                                    android:textSize="@dimen/min_font"
-                                    android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txtcd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cód. Pedido: "
+                            android:textColor="@color/vermelho"
+                            android:textSize="@dimen/min_font"
+                            android:textStyle="bold" />
 
-                                <TextView
-                                    android:id="@+id/textView6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Total R$: "
-                                    android:textColor="@color/vermelho"
-                                    android:textSize="@dimen/min_font"
-                                    android:textStyle="bold" />
-						
-						        <TextView
-						            android:id="@+id/txttt_pedido"
-						            android:layout_width="wrap_content"
-						            android:layout_height="wrap_content"
-						            android:layout_alignParentTop="true"
-						            android:layout_toRightOf="@+id/textView6"
-						            android:layout_weight="0.01"
-						            android:text="0,00"
-						            android:textColor="@color/vermelho"
-						            android:textSize="@dimen/min_font"
-						            android:textStyle="bold" />
-                        
+                        <TextView
+                            android:id="@+id/txtcd_pedido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/txtcd"
+                            android:layout_weight="0.01"
+                            android:textColor="@color/vermelho"
+                            android:textSize="@dimen/min_font"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total R$: "
+                            android:textColor="@color/vermelho"
+                            android:textSize="@dimen/min_font"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txttt_pedido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toRightOf="@+id/textView6"
+                            android:layout_weight="0.01"
+                            android:text="0,00"
+                            android:textColor="@color/vermelho"
+                            android:textSize="@dimen/min_font"
+                            android:textStyle="bold" />
                     </LinearLayout>
-                    
                 </TableRow>
-
 
                 <ListView
                     android:id="@+id/lst_produtos"
@@ -358,9 +340,7 @@
                     android:descendantFocusability="beforeDescendants" >
                 </ListView>
             </TableLayout>
-
         </LinearLayout>
-        
-        
     </RelativeLayout>
+
 </ScrollView>

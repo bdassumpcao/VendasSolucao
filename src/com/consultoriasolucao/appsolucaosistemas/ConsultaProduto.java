@@ -14,12 +14,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ConsultaProduto extends Activity implements OnItemClickListener {
 
@@ -43,7 +41,7 @@ public class ConsultaProduto extends Activity implements OnItemClickListener {
 
 	private List< Map<String, String>> buscarProdutos(String nome) {
 		// buscar todos os produtos do banco
-		
+
 
 		Cursor c = helper.getReadableDatabase().rawQuery("select _id,  cd_prd, nm_prd, vl_vnd,rf_prd,qt_prd  from produto where nm_prd like '%"+nome+"%' ORDER BY cd_prd ", null);
 		produtos = new ArrayList<Map<String,String>>();
@@ -71,7 +69,7 @@ public class ConsultaProduto extends Activity implements OnItemClickListener {
 
 		SimpleAdapter adapter = new SimpleAdapter(this, buscarProdutos(nome.getEditableText().toString()), R.layout.listview_produto, de, para);
 
-		
+
 		lista.setAdapter(adapter);
 	}
 
@@ -89,10 +87,10 @@ public class ConsultaProduto extends Activity implements OnItemClickListener {
 		this.saudacaoTextView = (TextView) findViewById(R.id.txtcodprod);
 		this.saudacaoTextView.setText(item.get("cd_prd"));
 
-		   	Intent intent = new Intent(this, DadosProduto.class);
-		    intent.putExtra(DadosProduto.EXTRA_NOME_USUARIO, item.get("cd_prd"));
-	    	startActivity(intent);
-		
+		Intent intent = new Intent(this, DadosProduto.class);
+		intent.putExtra(DadosProduto.EXTRA_NOME_USUARIO, item.get("cd_prd"));
+		startActivity(intent);
+
 	}
 
 }

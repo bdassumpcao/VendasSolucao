@@ -3,8 +3,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/branco">
+    android:layout_margin="2dp"
+    android:background="@color/branco"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/txtcodprod"
@@ -12,37 +13,31 @@
         android:layout_height="wrap_content"
         android:text="Descrição do Item"
         android:textSize="@dimen/font"
-        android:textStyle="bold"/>
-
-   
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edtnmproduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext"
         android:hint="" >
 
         <requestFocus />
     </EditText>
 
-  
     <Button
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@drawable/button"
+        android:contentDescription="@string/buscar"
         android:onClick="buscarproduto"
-        android:layout_gravity="center" 
-        android:text="@string/buscar"
-        android:contentDescription="@string/buscar"/>
-    
-    <ListView android:layout_width="match_parent"
-     
-        android:layout_height="wrap_content" android:id="@+id/listaProduto"
-        >
-        
+        android:text="@string/buscar" />
+
+    <ListView
+        android:id="@+id/listaProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
     </ListView>
-        
 
 </LinearLayout>

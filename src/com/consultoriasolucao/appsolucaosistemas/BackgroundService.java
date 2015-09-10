@@ -5,12 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.SimpleTimeZone;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -24,25 +19,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.audiofx.BassBoost.Settings;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.text.format.DateFormat;
-import android.text.format.Time;
 import android.util.Log;
-import android.widget.Button;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
 public class BackgroundService extends Service {
 
-	private ScheduledThreadPoolExecutor pool;
+//	private ScheduledThreadPoolExecutor pool;
 	private DatabaseHelper helper;
 	private Integer ano,mes,dia;
 	private String hora, minuto,segundo;
 	private Date dt_lancamento;
-	private Time horalancamento;
 	private String usuario;
 	private String vl_latitude;
 	private String vl_longitude;
@@ -83,6 +73,7 @@ public class BackgroundService extends Service {
 		return null;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void gravaLocalizacao()
 	{
 		
@@ -210,6 +201,7 @@ public class BackgroundService extends Service {
 
 		
 	
+	@SuppressWarnings("unused")
 	private Location getBestKnownLocation() {
 		//startGPS();		 
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -232,6 +224,7 @@ public class BackgroundService extends Service {
 		
 	}
 
+	@SuppressWarnings("unused")
 	private class Worker implements Runnable {
 
 		@Override
@@ -243,6 +236,7 @@ public class BackgroundService extends Service {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void criarNotificacao(String usuario, String texto, int id) {
 		int icone = R.drawable.ic_launcher;
 		String aviso = "PENDENCIA";

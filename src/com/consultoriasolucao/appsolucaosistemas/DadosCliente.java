@@ -29,8 +29,8 @@ public class DadosCliente extends Activity {
 	TextView txtds_complemento;
 	TextView txtcd_uf;
 	public static final String ACAO_EXIBIR_SAUDACAO = "com.consultoriasolucao.appsolucaosistemas.ACAO_EXIBIR_SAUDACAO";
-	
-	
+
+
 	private DatabaseHelper helper;
 
 	@Override
@@ -42,21 +42,21 @@ public class DadosCliente extends Activity {
 		txtnr_tel = (TextView) findViewById(R.id.txtnr_tel);
 		txtnr_fax = (TextView) findViewById(R.id.txtnr_fax);
 		txtnr_cel = (TextView) findViewById(R.id.txtnr_cel);
-		 txtnm_rua = (TextView) findViewById(R.id.txtnm_rua);
-		 txtnm_rzascl = (TextView) findViewById(R.id.txtnm_rzascl);
-		 txtnr_cpfcnpj = (TextView) findViewById(R.id.txtnr_cpfcnpj);
-		 txtnr_rgie = (TextView) findViewById(R.id.txtnr_rgie);
-		 txtnm_cpm = (TextView) findViewById(R.id.txtnm_cpm);
-		 txtnr_cep = (TextView) findViewById(R.id.txtnr_cep);
-		 txtds_obs = (TextView) findViewById(R.id.txtds_obs);
-		 txtds_email = (TextView) findViewById(R.id.txtds_email);
-		 txtnm_brr = (TextView) findViewById(R.id.txtnm_brr);
-		 txtds_complemento = (TextView) findViewById(R.id.txtds_complemento);
-		 txtcd_uf = (TextView) findViewById(R.id.txtcd_uf);
-		
+		txtnm_rua = (TextView) findViewById(R.id.txtnm_rua);
+		txtnm_rzascl = (TextView) findViewById(R.id.txtnm_rzascl);
+		txtnr_cpfcnpj = (TextView) findViewById(R.id.txtnr_cpfcnpj);
+		txtnr_rgie = (TextView) findViewById(R.id.txtnr_rgie);
+		txtnm_cpm = (TextView) findViewById(R.id.txtnm_cpm);
+		txtnr_cep = (TextView) findViewById(R.id.txtnr_cep);
+		txtds_obs = (TextView) findViewById(R.id.txtds_obs);
+		txtds_email = (TextView) findViewById(R.id.txtds_email);
+		txtnm_brr = (TextView) findViewById(R.id.txtnm_brr);
+		txtds_complemento = (TextView) findViewById(R.id.txtds_complemento);
+		txtcd_uf = (TextView) findViewById(R.id.txtcd_uf);
+
 		// prepara acesso ao banco de dados
 		helper = new DatabaseHelper(this);
-		
+
 		Intent intent = getIntent();
 		if (intent.hasExtra(ACAO_EXIBIR_SAUDACAO)) {
 
@@ -66,7 +66,7 @@ public class DadosCliente extends Activity {
 			Cursor cursor = db.rawQuery(
 					"SELECT   _id,cd_cli , nm_cli , nr_tel , nr_fax , nr_cel , nm_rua , nm_rzascl , nr_cpfcnpj , nr_rgie , nm_cpm , nr_cep , ds_obs , ds_email , nm_brr , ds_complemento, cd_uf from cliente where cd_cli="+ txtcd_cli.getText().toString(), null);
 			cursor.moveToFirst();
-			
+
 			txtcd_cli.setText(cursor.getString(1).toString());
 			txtnm_cli.setText(cursor.getString(2).toString());
 			txtnr_tel.setText(cursor.getString(3).toString());
@@ -89,70 +89,70 @@ public class DadosCliente extends Activity {
 		}
 
 	}
-	
+
 	public String configuranumerofone(String fone) // rotina para tirar o 67 oara realizar as ligaões
 	{
-		
-    	if (fone.substring(0,2).toString().equals("67"))
+
+		if (fone.substring(0,2).toString().equals("67"))
 		{		
-    		fone = fone.substring(2, fone.length());
+			fone = fone.substring(2, fone.length());
 		}
-		
+
 		if (fone.substring(0,4).toString().equals("(67)"))
 		{		
 			fone = fone.substring(4, fone.length());
 		}
-		
+
 		return fone;
 	}
-	
+
 	public void adicionarligtel(View view)
 	{	
 		if (txtnr_tel.getText().length() >7)
 		{
-		Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_tel.getText().toString()));		
-		Intent intent = new Intent(Intent.ACTION_CALL,call);
-		startActivity(intent);
+			Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_tel.getText().toString()));		
+			Intent intent = new Intent(Intent.ACTION_CALL,call);
+			startActivity(intent);
 		}
 	}
-	
+
 	public void adicionarligfax(View view)
 	{	
 		if (txtnr_fax.getText().length() >7)
 		{
-		Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_fax.getText().toString()));		
-		Intent intent = new Intent(Intent.ACTION_CALL,call);
-		startActivity(intent);
+			Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_fax.getText().toString()));		
+			Intent intent = new Intent(Intent.ACTION_CALL,call);
+			startActivity(intent);
 		}
 	}
-	
+
 	public void adicionarligcel(View view)
 	{	
 		if (txtnr_cel.getText().length() >7)
 		{
-		Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_cel.getText().toString()));		
-		Intent intent = new Intent(Intent.ACTION_CALL,call);
-		startActivity(intent);
+			Uri call = Uri.parse("tel:"+configuranumerofone(txtnr_cel.getText().toString()));		
+			Intent intent = new Intent(Intent.ACTION_CALL,call);
+			startActivity(intent);
 		}
 	}
-	
+
 	public void enviarEmail(View view)
 	{
-		
+
 		Uri call = Uri.parse("mailto:"+txtds_email.getText());
 		Intent intent = new Intent(Intent.ACTION_SENDTO,call);
 		startActivity(intent);
 	}
-	
+
 	public void abrirMapa(View view)
 	{
-		
-Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("google.navigation:q="+txtnm_rua.getText()+"+-+"+txtnm_brr.getText()+",+"+txtnm_cpm.getText()+"+-+"+txtcd_uf.getText()));
-		
+
+		Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("google.navigation:q="+txtnm_rua.getText()+"+-+"+txtnm_brr.getText()+",+"+txtnm_cpm.getText()+"+-+"+txtcd_uf.getText()));
+
 		startActivity(intent);
 
 	}
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

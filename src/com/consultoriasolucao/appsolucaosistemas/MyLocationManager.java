@@ -86,8 +86,10 @@ public abstract class MyLocationManager {
         try {
             ConnectivityManager cm = (ConnectivityManager)
             context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            String LogSync = null;
-            String LogToUserTitle = null;
+            @SuppressWarnings("unused")
+			String LogSync = null;
+            @SuppressWarnings("unused")
+			String LogToUserTitle = null;
             if (cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()) {
                     LogSync += "\nConectado a Internet 3G ";
                     LogToUserTitle += "Conectado a Internet 3G ";

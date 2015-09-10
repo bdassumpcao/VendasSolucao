@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-    <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        
-        <item android:id="@+id/remover_pedido" android:title="@string/menu_pedido_Remover"></item>
-        <item android:id="@+id/enviar_xmlemail" android:title="@string/menu_pedido_email"></item>
-        <item android:id="@+id/editar_pedido" android:title="@string/menu_pedido_editar"></item>
-        
-        
-        
-    </menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/remover_pedido"
+        android:title="@string/menu_pedido_Remover">
+    </item>
+    <item
+        android:id="@+id/enviar_xmlemail"
+        android:title="@string/menu_pedido_email">
+    </item>
+    <item
+        android:id="@+id/editar_pedido"
+        android:title="@string/menu_pedido_editar">
+    </item>
+
+</menu>
