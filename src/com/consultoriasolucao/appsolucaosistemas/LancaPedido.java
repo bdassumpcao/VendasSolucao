@@ -446,12 +446,12 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 				vl_vnd = obj.get("vl_vnd");
 //				vl_total = obj.get("vl_total");			
 				
-				
-				Cursor c = helper.getReadableDatabase().rawQuery("select a._id,  a.cd_prd, b.nm_prd, a.qt_iten ,a.vl_iten,(a.qt_iten*a.vl_iten) from itenspedido a join produto b on (a.cd_prd=b.cd_prd) where a.cd_pedido=" +txtcd_pedido.getText().toString()+" and a.cd_prd="+cd_prd, null);
-				while (c.moveToNext()) 
+				DatabaseHelper h = new DatabaseHelper(this);
+				Cursor c1 = h.getReadableDatabase().rawQuery("select a._id,  a.cd_prd, b.nm_prd, a.qt_iten ,a.vl_iten,(a.qt_iten*a.vl_iten) from itenspedido a join produto b on (a.cd_prd=b.cd_prd) where a.cd_pedido=" +txtcd_pedido.getText().toString()+" and a.cd_prd="+cd_prd, null);
+				while (c1.moveToNext())
 				{
-					String q = df.format(c.getDouble(3));
-					String v = df.format(c.getDouble(4));
+					String q = df.format(c1.getDouble(3));
+					String v = df.format(c1.getDouble(4));
 
 					if(!qt_prd.equals(q) | !vl_vnd.equals(v)){
 						alterado = true;
@@ -463,7 +463,7 @@ public class LancaPedido extends Activity implements OnItemClickListener {
 						index_Alterado[j] = i+"";
 						j++;
 					}
-				c.close();
+				c1.close();
 				}
 			}
 			
